@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://beyond-these-stars-calculator.smartcyf.workers.dev/sitemap.xml
-Sitemap: https://beyond-these-stars-calculator.smartcyf.workers.dev/sitemap.txt
+Sitemap: https://smartcyf.github.io/commercial-promotion/sitemap.xml
+Sitemap: https://smartcyf.github.io/commercial-promotion/sitemap.txt
