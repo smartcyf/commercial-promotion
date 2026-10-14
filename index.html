@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name='impact-site-verification' value='67248ade-2256-4eb9-a44d-4c9372adbc06' />
+  <meta name="google-site-verification" content="OGydVdcXVbSynuzT5IWmLOtdpgQUmtskzdu4q6aYauM" />
+  <title>Beyond These Stars Calculator — Production Chains, Building Adjacency & Storage Planner (2026)</title>
+  <meta name="description" content="Free interactive Beyond These Stars calculator and settlement planner. Calculate building construction costs, production ratios (Mine 2s, Ore Smelter 5s), adjacency bonuses & penalties, by-product storage (Soot, Wood Waste, Slag, Sludge, Goo), and Peep meal happiness." />
+  <meta name="keywords" content="beyond these stars calculator, beyond these stars production calculator, beyond these stars building adjacency, beyond these stars layout planner, beyond these stars wiki tools, beyond these stars byproducts soot wood waste, kewa space whale city builder" />
+  <link id="canonicalLink" rel="canonical" href="https://beyond-these-stars-calculator.smartcyf.workers.dev/" />
+
+  <!-- Open Graph / Discord / Reddit Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Beyond These Stars Production Calculator & Adjacency Planner" />
+  <meta property="og:description" content="Plan your settlement on Kewa's back: exact construction BOM, building adjacency bonus/penalty simulator, by-product bottleneck solver, and Peep food happiness database." />
+  <meta id="ogUrlMeta" property="og:url" content="https://beyond-these-stars-calculator.smartcyf.workers.dev/" />
+
+  <!-- ==================== 1-MINUTE MONETIZATION & SITE CONFIG ==================== -->
+  <script>
+    /**
+     * EDIT THESE 6 FIELDS BEFORE DEPLOYING TO START COLLECTING REVENUE:
+     * 1. siteUrl: Your Cloudflare Pages URL or custom domain
+     * 2. kofiUrl: Your Ko-fi or BuyMeACoffee link (Day-1 zero-threshold tips from players)
+     * 3. affiliateDeals: High-converting partner links (Instant Gaming / Humble / Fanatical / Gameseal)
+     * 4. adsenseClientId: Your Google AdSense Publisher ID (e.g. "ca-pub-XXXXXXXXXXXXXXXX"), leave "" until approved
+     * 5. gaMeasurementId: Your Google Analytics 4 ID (e.g. "G-XXXXXXXXXX")
+     */
+    const MONETIZATION_CONFIG = {
+      siteUrl: "https://beyond-these-stars-calculator.smartcyf.workers.dev",
+      kofiUrl: "https://ko-fi.com/kewatoolkit",
+      supportLabel: "Support on Ko-fi ($3)",
+      adsenseClientId: "", // Set to "ca-pub-1234567890" once AdSense approves your domain
+      adsenseSlotId: "",   // Set to your responsive display ad slot ID
+      gaMeasurementId: "", // Set to "G-XXXXXXXXXX" to track real-time visitors
+      affiliateDeals: [
+        {
+          store: "Instant Gaming · Official Partner",
+          badge: "LAUNCH DEAL -22%",
+          title: "Beyond These Stars (Steam Key)",
+          price: "$23.49",
+          retail: "$29.99",
+          cta: "Check Key Price ↗",
+          url: "https://www.instant-gaming.com/en/search/?q=Beyond+These+Stars&igr=gamer-d5194af"
+        },
+        {
+          store: "Instant Gaming · Top Strategy Deals",
+          badge: "UP TO -70% OFF",
+          title: "Trending Steam Strategy & Sim Keys",
+          price: "Best Deals",
+          retail: "Steam",
+          cta: "Browse Deals ↗",
+          url: "https://www.instant-gaming.com/en/pc/steam/trending/?igr=gamer-d5194af"
+        }
+      ]
+    };
+
+    // Dynamically load Google Analytics if configured
+    if (MONETIZATION_CONFIG.gaMeasurementId) {
+      const gaScript = document.createElement("script");
+      gaScript.async = true;
+      gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${MONETIZATION_CONFIG.gaMeasurementId}`;
+      document.head.appendChild(gaScript);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", MONETIZATION_CONFIG.gaMeasurementId);
+    }
+
+    // Dynamically load Google AdSense if configured
+    if (MONETIZATION_CONFIG.adsenseClientId) {
+      const adsScript = document.createElement("script");
+      adsScript.async = true;
+      adsScript.crossOrigin = "anonymous";
+      adsScript.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${MONETIZATION_CONFIG.adsenseClientId}`;
+      document.head.appendChild(adsScript);
+    }
+  </script>
+
+  <!-- Tailwind CSS CDN for fast zero-build deployment -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            kewa: {
+              950: '#070b14',
+              900: '#0d1526',
+              800: '#16223be6',
+              700: '#1f3254',
+              500: '#38bdf8',
+              400: '#7dd3fc',
+              accent: '#14b8a6'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- JSON-LD Structured Data: WebApplication + FAQPage for Rich Google Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Beyond These Stars Production Calculator & Adjacency Planner",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Interactive settlement calculator for Beyond These Stars (Hooded Horse / Balancing Monkey Games). Includes multi-building construction cost calculator, adjacency bonus and penalty simulator, by-product storage solver, and full 64-building database."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do building adjacency bonuses and penalties work in Beyond These Stars?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most buildings in Beyond These Stars trigger bonuses or penalties based on immediately adjacent tiles. For example, placing a Hut next to 2 Potato Patches grants +20% Happiness (+40% with the Increase Happiness perk), whereas placing a Hut next to a Water Pump inflicts a -20% production speed penalty on the Water Pump. Placing two Woodcutters or two Ore Smelters touching each other also causes production or storage penalties."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why did my Woodcutter, Burner Generator, or Ore Smelter stop working in Beyond These Stars?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Buildings halt production when their output storage fills up with either primary products or By-products (Wood Waste, Soot, Slag, Sludge, or Goo). Build a Storage Shed (80 capacity per tile, configured in batches of 20) or a By-Product Yard nearby, or route Wood Waste to a Compost Heap so primary production can resume."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the cycle ratio between Mine and Ore Smelter in Beyond These Stars?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A Mine extracts Iron Ore, Copper Ore, Stone, or Sand in a 2-second work cycle (2 workers, Low pollution), whereas an Ore Smelter refines Iron or Copper in a 5-second work cycle (4 workers, requires Power, produces Soot). One Mine easily supplies an Ore Smelter or Metal Smelter."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-kewa-950 text-slate-100 min-h-screen font-sans selection:bg-teal-500 selection:text-slate-950">
+
+  <!-- Top Announcement / Patch Banner -->
+  <div class="bg-teal-950/80 border-b border-teal-800/60 px-4 py-2 text-xs text-teal-200 flex flex-wrap items-center justify-between gap-2">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+      <span><strong>Launch Ready (Oct 2026 Build):</strong> Verified against official Hooded Horse Wiki data — 64 Buildings, 58 Resources, Adjacency Rules &amp; Storage Math.</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <button onclick="copyShareLink()" id="shareBtnTop" class="text-teal-300 hover:text-white underline cursor-pointer">Copy Shareable Build Link</button>
+      <button onclick="copyRedditMarkdown()" id="redditBtnTop" class="text-amber-300 hover:text-white underline cursor-pointer">Export Reddit/Steam Table</button>
+      <a id="topKofiLink" href="https://ko-fi.com/kewatoolkit" target="_blank" rel="noopener" class="px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30 font-medium">☕ Tip Jar (Ko-fi)</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="border-b border-slate-800 bg-kewa-900/90 sticky top-0 z-30 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2.5">
+          <span class="px-2 py-0.5 text-xs font-semibold uppercase tracking-wider bg-teal-500/20 text-teal-300 border border-teal-500/40 rounded">Kewa Settlement Toolkit</span>
+          <span class="text-xs text-slate-400">v1.1 · Zero-Login Web App</span>
+        </div>
+        <h1 class="text-xl md:text-2xl font-bold text-white mt-1">
+          Beyond These Stars Production Calculator &amp; Adjacency Planner
+        </h1>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex flex-wrap gap-1.5" aria-label="Calculator Modes">
+        <button onclick="switchTab('bom')" id="tab-bom" class="tab-btn px-3.5 py-2 rounded-lg text-sm font-medium bg-teal-500 text-slate-950 transition">
+          1. Construction &amp; Chain Planner
+        </button>
+        <button onclick="switchTab('adjacency')" id="tab-adjacency" class="tab-btn px-3.5 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+          2. Adjacency Bonus Simulator
+        </button>
+        <button onclick="switchTab('byproducts')" id="tab-byproducts" class="tab-btn px-3.5 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+          3. By-Products &amp; Storage Math
+        </button>
+        <button onclick="switchTab('food')" id="tab-food" class="tab-btn px-3.5 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+          4. Peep Food &amp; Full Database
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-6 space-y-8">
+
+    <!-- ==================== TAB 1: CONSTRUCTION & PRODUCTION CHAIN PLANNER ==================== -->
+    <section id="panel-bom" class="space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Left Column: Building Selector -->
+        <div class="lg:col-span-7 bg-kewa-900 border border-slate-800 rounded-xl p-5 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h2 class="text-lg font-semibold text-white">Add Settlement Buildings to Plan</h2>
+              <p class="text-xs text-slate-400">Select buildings to calculate total raw construction materials, Peeps needed, Power requirements, and by-product warnings.</p>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="loadPreset('starter')" class="px-2.5 py-1 text-xs bg-slate-800 hover:bg-slate-700 text-teal-300 rounded border border-slate-700">Preset: Early Colony</button>
+              <button onclick="loadPreset('industrial')" class="px-2.5 py-1 text-xs bg-slate-800 hover:bg-slate-700 text-sky-300 rounded border border-slate-700">Preset: Smelting &amp; Power</button>
+              <button onclick="loadPreset('endgame')" class="px-2.5 py-1 text-xs bg-slate-800 hover:bg-slate-700 text-purple-300 rounded border border-slate-700">Preset: Reformer &amp; SpacePort</button>
+            </div>
+          </div>
+
+          <!-- Filter & Search -->
+          <div class="flex flex-col sm:flex-row gap-2">
+            <input
+              id="buildingSearch"
+              type="text"
+              placeholder="Search 64 buildings (e.g. Ore Smelter, Reformer, Hut, Laser)..."
+              oninput="renderBuildingSelector()"
+              class="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-teal-400"
+            />
+            <select
+              id="categoryFilter"
+              onchange="renderBuildingSelector()"
+              class="bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-teal-400"
+            >
+              <option value="ALL">All Categories</option>
+              <option value="Construction">Construction &amp; Mining</option>
+              <option value="Power">Power Generation</option>
+              <option value="Accommodation">Accommodation (Housing)</option>
+              <option value="Agriculture">Agriculture &amp; Water</option>
+              <option value="PeepResources">Peep Food &amp; Clothes</option>
+              <option value="Advanced">Advanced &amp; Research</option>
+              <option value="Terraforming">Terraforming</option>
+              <option value="Hazardous">Hazardous &amp; Recycling</option>
+              <option value="Transport">Storage &amp; SpacePort</option>
+            </select>
+          </div>
+
+          <!-- Scrollable Building List -->
+          <div id="buildingSelectorList" class="max-h-[540px] overflow-y-auto divide-y divide-slate-800/80 pr-1"></div>
+        </div>
+
+        <!-- Right Column: Live Calculation Output + Native Monetization Cards -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="bg-kewa-900 border border-slate-800 rounded-xl p-5 space-y-5">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <div>
+                <h2 class="text-lg font-semibold text-white">Settlement Bill of Materials (BOM)</h2>
+                <p class="text-xs text-slate-400">Real-time totals for your planned queue</p>
+              </div>
+              <div class="flex gap-1.5">
+                <button onclick="copyShareLink()" class="px-2.5 py-1 text-xs bg-teal-500/20 hover:bg-teal-500/30 text-teal-300 border border-teal-500/40 rounded" title="Share link with your build stored in URL">Share URL</button>
+                <button onclick="copyRedditMarkdown()" class="px-2.5 py-1 text-xs bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 rounded" title="Copy formatted Markdown table with backlink for Reddit/Steam">Copy MD</button>
+                <button onclick="clearPlan()" class="px-2 py-1 text-xs bg-rose-950/60 hover:bg-rose-900/60 text-rose-300 border border-rose-800/50 rounded">Reset</button>
+              </div>
+            </div>
+
+            <!-- Key KPIs -->
+            <div class="grid grid-cols-3 gap-3">
+              <div class="bg-slate-950/90 border border-slate-800 rounded-lg p-3">
+                <div class="text-xs text-slate-400">Total Workers</div>
+                <div id="kpiWorkers" class="text-xl font-bold text-teal-400 mt-0.5">0 Peeps</div>
+                <div id="kpiHutsEquiv" class="text-[11px] text-slate-500">0 Huts required</div>
+              </div>
+              <div class="bg-slate-950/90 border border-slate-800 rounded-lg p-3">
+                <div class="text-xs text-slate-400">Power Grid</div>
+                <div id="kpiPower" class="text-xl font-bold text-amber-400 mt-0.5">0 Bldgs</div>
+                <div id="kpiGenerators" class="text-[11px] text-slate-500">0 Generators in plan</div>
+              </div>
+              <div class="bg-slate-950/90 border border-slate-800 rounded-lg p-3">
+                <div class="text-xs text-slate-400">Storage Needed</div>
+                <div id="kpiStorage" class="text-xl font-bold text-sky-400 mt-0.5">0 Units</div>
+                <div id="kpiSheds" class="text-[11px] text-slate-500">0 Storage Sheds</div>
+              </div>
+            </div>
+
+            <!-- Selected Buildings Queue -->
+            <div>
+              <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Planned Buildings Queue</div>
+              <div id="plannedQueueList" class="space-y-1.5 max-h-36 overflow-y-auto text-sm"></div>
+            </div>
+
+            <!-- Total Construction Materials -->
+            <div>
+              <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Required Construction Materials</div>
+              <div id="bomMaterialsGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
+            </div>
+
+            <!-- Outputs, Byproducts & Tech Prereqs -->
+            <div class="space-y-3 pt-2 border-t border-slate-800">
+              <div>
+                <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Produced Resources &amp; By-Products Warning</div>
+                <div id="bomOutputs" class="text-xs text-slate-300 leading-relaxed"></div>
+              </div>
+              <div>
+                <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Required Tech Tree Prerequisites</div>
+                <div id="bomPrereqs" class="text-xs text-slate-400"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==================== MONETIZATION CARD: AFFILIATE STEAM KEY DEALS & KO-FI ==================== -->
+          <div class="bg-kewa-900 border border-slate-800 rounded-xl p-4 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-wider text-teal-300">Verified Steam Key Deals &amp; Community Support</span>
+              <span class="text-[10px] text-slate-500">Partner Links</span>
+            </div>
+            <div id="affiliateContainer" class="space-y-2"></div>
+            <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between gap-2">
+              <span class="text-xs text-slate-400">Saved your settlement from a Soot power lock?</span>
+              <a id="sidebarKofiBtn" href="https://ko-fi.com/kewatoolkit" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-semibold shrink-0 transition">
+                ☕ Support on Ko-fi ($3)
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: ADJACENCY BONUS & PENALTY SIMULATOR ==================== -->
+    <section id="panel-adjacency" class="hidden space-y-6">
+      <div class="bg-kewa-900 border border-slate-800 rounded-xl p-6 space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <div>
+            <h2 class="text-lg font-semibold text-white">Interactive Building Adjacency Bonus &amp; Penalty Checker</h2>
+            <p class="text-xs text-slate-400">In Beyond These Stars, placing buildings next to the wrong neighbor silently cripples production speed or storage by 20%–30%. Test your layout below.</p>
+          </div>
+          <span class="text-xs px-3 py-1 rounded bg-amber-500/10 text-amber-300 border border-amber-500/30">
+            Pro Tip: Early "Increase Happiness" Perk doubles Hut + Potato Patch bonus from +20% to +40%!
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Building Picker -->
+          <div class="lg:col-span-5 space-y-3">
+            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400">1. Select Center Building to Inspect</label>
+            <div id="adjBuildingButtons" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
+          </div>
+
+          <!-- Neighbor Simulator & Verdict -->
+          <div class="lg:col-span-7 bg-slate-950 border border-slate-800 rounded-xl p-5 space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 id="adjTitle" class="text-base font-bold text-teal-300">Select a building</h3>
+              <span id="adjCycleBadge" class="text-xs px-2.5 py-0.5 rounded bg-slate-800 text-slate-300"></span>
+            </div>
+            <p id="adjSummary" class="text-sm text-slate-300"></p>
+
+            <div class="space-y-3 pt-2">
+              <div class="text-xs font-semibold uppercase tracking-wider text-slate-400">2. Surrounding Neighbor Effects</div>
+              <div id="adjConditionsList" class="space-y-2.5"></div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-4">
+              <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Optimal Layout Blueprint &amp; Strategy</div>
+              <div id="adjStrategyBox" class="p-3.5 rounded-lg bg-teal-950/40 border border-teal-800/50 text-xs text-teal-100 leading-relaxed"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: BY-PRODUCTS & STORAGE BOTTLENECK SOLVER ==================== -->
+    <section id="panel-byproducts" class="hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-6 bg-kewa-900 border border-slate-800 rounded-xl p-6 space-y-4">
+          <h2 class="text-lg font-semibold text-white">Storage Shed vs. Warehouse Capacity Calculator</h2>
+          <p class="text-xs text-slate-400">
+            Every production building stops completely when its output buffer fills with main products OR By-Products (<code class="text-amber-300">Wood Waste</code>, <code class="text-amber-300">Soot</code>, <code class="text-amber-300">Slag</code>, <code class="text-amber-300">Sludge</code>, <code class="text-amber-300">Goo</code>).
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <div>
+              <label class="block text-xs text-slate-300 mb-1">Target Stockpile / By-Product Buffer Needed (Units)</label>
+              <input id="storageTargetInput" type="number" value="240" min="20" step="20" oninput="calcStorageMath()" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-white" />
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-slate-950 border border-slate-800 rounded-lg p-4">
+                <div class="text-xs text-slate-400">Storage Sheds (80 / tile)</div>
+                <div id="resShedsCount" class="text-2xl font-bold text-teal-400 mt-1">3 Sheds</div>
+                <div id="resShedsBatches" class="text-xs text-slate-400 mt-1">12 slots (batches of 20)</div>
+                <div id="resShedsCost" class="text-[11px] text-slate-500 mt-2">Cost: 12 Stone, 6 Tool, 9 Iron, 6 Wood</div>
+              </div>
+              <div class="bg-slate-950 border border-slate-800 rounded-lg p-4">
+                <div class="text-xs text-slate-400">Warehouses (120 / tile)</div>
+                <div id="resWarehouseCount" class="text-2xl font-bold text-sky-400 mt-1">2 Tiles eq.</div>
+                <div class="text-xs text-slate-400 mt-1">+50% space efficiency per tile</div>
+                <div class="text-[11px] text-slate-500 mt-2">Unlocked after Cement Factory</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-lg bg-rose-950/40 border border-rose-800/50 text-xs text-rose-200 space-y-1.5">
+            <div class="font-semibold text-rose-300">Critical Soft-Lock Warning (Soot &amp; Tools Trap):</div>
+            <p>If your <strong>Burner Generator</strong> fills with <strong>Soot</strong>, power shuts off across your settlement. If you have 0 Tools in stock to build a Storage Shed and your Toolsmith has no power because the generator is full of Soot, you are soft-locked and must demolish a building to recover Tools!</p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 bg-kewa-900 border border-slate-800 rounded-xl p-6 space-y-4">
+          <h2 class="text-lg font-semibold text-white">Complete By-Product Recycling &amp; Sink Matrix</h2>
+          <p class="text-xs text-slate-400">How to clear every hazardous by-product so your primary factories never stall:</p>
+          <div class="space-y-3 text-xs">
+            <div class="p-3 bg-slate-950 border border-slate-800 rounded-lg">
+              <div class="flex justify-between font-semibold text-amber-300">
+                <span>1. Wood Waste (By-Product)</span>
+                <span>Source: Woodcutter (5s cycle)</span>
+              </div>
+              <p class="text-slate-300 mt-1"><strong>Best Sink:</strong> Feed into <strong>Compost Heap</strong> (produces 3x Compost for Tree Nursery &amp; Terraforming). <em>Avoid burning Wood Waste in Burner Generator early on, as Compost requires huge quantities of Wood Waste!</em></p>
+            </div>
+            <div class="p-3 bg-slate-950 border border-slate-800 rounded-lg">
+              <div class="flex justify-between font-semibold text-amber-300">
+                <span>2. Soot (By-Product)</span>
+                <span>Source: Burner Generator (15s), Ore Smelter (5s)</span>
+              </div>
+              <p class="text-slate-300 mt-1"><strong>Best Sink:</strong> Store in dedicated <strong>Storage Shed</strong> (batches of 20) or <strong>By-Product Yard</strong>; export or process via Chemical/Cleaner tech chain.</p>
+            </div>
+            <div class="p-3 bg-slate-950 border border-slate-800 rounded-lg">
+              <div class="flex justify-between font-semibold text-amber-300">
+                <span>3. Slag (By-Product)</span>
+                <span>Source: Metal Smelter (Steel/Glass), Toolsmith (Tool)</span>
+              </div>
+              <p class="text-slate-300 mt-1"><strong>Best Sink:</strong> Buffer in Warehouse / By-Product Yard next to industrial smelting district so Steel and Tool lines never pause.</p>
+            </div>
+            <div class="p-3 bg-slate-950 border border-slate-800 rounded-lg">
+              <div class="flex justify-between font-semibold text-amber-300">
+                <span>4. Sludge (By-Product)</span>
+                <span>Source: Cement Factory, Fuel Generator</span>
+              </div>
+              <p class="text-slate-300 mt-1"><strong>Best Sink:</strong> Route directly to <strong>Sludge Dehydrator</strong> (requires Power, 2 workers) to convert hazardous Sludge back into clean <strong>Water</strong>!</p>
+            </div>
+            <div class="p-3 bg-slate-950 border border-slate-800 rounded-lg">
+              <div class="flex justify-between font-semibold text-amber-300">
+                <span>5. Goo (By-Product)</span>
+                <span>Source: Electronics Plant, Fuel Plant, Destressor</span>
+              </div>
+              <p class="text-slate-300 mt-1"><strong>Best Sink:</strong> Store in Warehouse / Space Port or process in late-game Hazardous facilities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 4: PEEP FOOD HAPPINESS & FULL DATABASE ==================== -->
+    <section id="panel-food" class="hidden space-y-6">
+      <div class="bg-kewa-900 border border-slate-800 rounded-xl p-6 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h2 class="text-lg font-semibold text-white">Peep Food, Meal &amp; Beverage Happiness Tier List</h2>
+            <p class="text-xs text-slate-400">Prepared Cafe Meals and Juice Factory Beverages restore <strong>0.75 Exhaustion</strong> (vs 0.55 for raw crops) and up to <strong>+200 Happiness</strong>.</p>
+          </div>
+          <input id="foodSearch" type="text" placeholder="Filter food or drink..." oninput="renderFoodTable()" class="bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-white" />
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-slate-800 text-xs uppercase text-slate-400">
+                <th class="py-2.5 px-3">Resource / Dish</th>
+                <th class="py-2.5 px-3">Category</th>
+                <th class="py-2.5 px-3">Happiness Restored</th>
+                <th class="py-2.5 px-3">Exhaustion Recovery</th>
+                <th class="py-2.5 px-3">Supply Chain / Buildings</th>
+              </tr>
+            </thead>
+            <tbody id="foodTableBody" class="divide-y divide-slate-800/60"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dynamic AdSense Banner Container (Hidden automatically until adsenseClientId is configured) -->
+    <div id="adsenseBannerWrapper" class="hidden bg-kewa-900/50 border border-slate-800 rounded-xl p-4 text-center"></div>
+
+    <!-- ==================== SEO FAQ & STRATEGY GUIDE SECTION ==================== -->
+    <section id="faq-section" class="bg-kewa-900/60 border border-slate-800 rounded-xl p-6 space-y-4">
+      <h2 class="text-lg font-bold text-white">Beyond These Stars Settlement Optimization Guide &amp; Mechanics Reference</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-slate-300 leading-relaxed">
+        <div class="space-y-2">
+          <h3 class="font-semibold text-teal-300 text-sm">1. Early Production Ratios (2s vs 5s vs 15s)</h3>
+          <p>In <em>Beyond These Stars</em>, a single <strong>Mine</strong> operates on a <strong>2-second work cycle</strong> (extracting Stone, Iron Ore, Copper Ore, or Sand), whereas an <strong>Ore Smelter</strong> takes <strong>5 seconds</strong> per Iron or Copper ingot. One Mine easily sustains an Ore Smelter plus construction stone demand. Meanwhile, the <strong>Burner Generator</strong> runs on a <strong>15-second work cycle</strong> and can power multiple early buildings (Ore Smelter, Metal Smelter, Toolsmith).</p>
+        </div>
+        <div class="space-y-2">
+          <h3 class="font-semibold text-teal-300 text-sm">2. Avoiding Hidden Adjacency Penalties</h3>
+          <p>Never cluster identical production buildings without checking adjacency rules. Placing two <strong>Woodcutters</strong> touching reduces production speed by <strong>-20%</strong>. Placing two <strong>Ore Smelters</strong> touching inflicts <strong>-30% storage and -1 workplace</strong>. Keep <strong>Huts</strong> away from <strong>Water Pumps</strong> (-20% water pump speed) and instead pair each Hut with <strong>2 Potato Patches</strong> (+20% Happiness, or +40% with the early Happiness Perk).</p>
+        </div>
+        <div class="space-y-2">
+          <h3 class="font-semibold text-teal-300 text-sm">3. Unlocking the House &amp; Mid-Game Tech</h3>
+          <p>To unlock the <strong>House</strong> (7 Peeps capacity), your settlement needs a <strong>School</strong> (unlocked after Hut) and enough Peep population—up to 30 Huts, or fewer if you use the 3x Hut cluster adjacency (+1 housing slot per Hut, trading off -20% food energy recovery).</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-800/80 mt-12 py-6 px-4 text-center text-xs text-slate-500">
+    <p>Beyond These Stars Production Calculator &amp; Planner · Built with verified data from the official Hooded Horse Wiki (Oct 2026 Release Build).</p>
+    <p class="mt-1">Unofficial community tool. Game assets and trademarks belong to Balancing Monkey Games and Hooded Horse. Some deal links may be partner links that support server costs at no extra charge to you.</p>
+  </footer>
+
+  <!-- ==================== APPLICATION DATA & LOGIC ==================== -->
+  <script>
+    // Complete verified 64 Buildings dataset from official Hooded Horse Beyond These Stars Wiki
+    const BUILDINGS = [
+      { id: "woodcutter", name: "Woodcutter", category: "Construction", workers: 1, power: false, outputs: ["Wood"], byproducts: ["Wood Waste"], cycle: "5s", prereq: "Start", costs: { Tool: 2, Wood: 6 } },
+      { id: "mine", name: "Mine", category: "Construction", workers: 2, power: false, outputs: ["Stone", "Iron Ore", "Copper Ore", "Sand"], byproducts: [], cycle: "2s", prereq: "Woodcutter (5 Wood)", costs: { Wood: 4, Stone: 6, Iron: 4, Tool: 3 } },
+      { id: "water_pump", name: "Water Pump", category: "Agriculture", workers: 0, power: false, outputs: ["Water"], byproducts: [], cycle: "6s", prereq: "Start", costs: { Wood: 2, Iron: 2 } },
+      { id: "potato_patch", name: "Potato Patch", category: "Agriculture", workers: 0, power: false, outputs: ["Potato"], byproducts: [], cycle: "Passive", prereq: "Start", costs: { Wood: 4 } },
+      { id: "hut", name: "Hut (2 Housing)", category: "Accommodation", workers: 2, power: false, outputs: ["Housing (2-3)"], byproducts: [], cycle: "Housing", prereq: "Start", costs: { Wood: 4, Stone: 4 } },
+      { id: "burner_generator", name: "Burner Generator", category: "Power", workers: 2, power: false, outputs: ["Power"], byproducts: ["Soot"], cycle: "15s", prereq: "Mine (5 Iron Ore)", costs: { Tool: 3, Wood: 4, Stone: 6, Iron: 10 } },
+      { id: "ore_smelter", name: "Ore Smelter", category: "Construction", workers: 4, power: true, outputs: ["Iron", "Copper"], byproducts: ["Soot"], cycle: "5s", prereq: "Mine", costs: { Tool: 6, Wood: 8, Stone: 6, Iron: 9 } },
+      { id: "toolsmith", name: "Toolsmith", category: "Construction", workers: 1, power: true, outputs: ["Tool"], byproducts: ["Slag"], cycle: "Standard", prereq: "Ore Smelter", costs: { Tool: 4, Stone: 10, Wood: 8, Iron: 3 } },
+      { id: "sawmill", name: "Sawmill", category: "Construction", workers: 3, power: true, outputs: ["Plank"], byproducts: [], cycle: "Standard", prereq: "Toolsmith", costs: { Wood: 12, Tool: 4, Stone: 2, Iron: 4 } },
+      { id: "metal_smelter", name: "Metal Smelter", category: "Construction", workers: 3, power: true, outputs: ["Steel", "Glass"], byproducts: ["Slag"], cycle: "Standard", prereq: "Mine", costs: { Tool: 6, Stone: 12, Plank: 4, Iron: 14 } },
+      { id: "storage_shed", name: "Storage Shed (80 cap)", category: "Transport", workers: 1, power: false, outputs: ["Storage (80/tile)"], byproducts: [], cycle: "Logistics", prereq: "Hut", costs: { Stone: 4, Tool: 2, Iron: 3, Wood: 2 } },
+      { id: "warehouse", name: "Warehouse (120/tile)", category: "Transport", workers: 3, power: false, outputs: ["Storage (120/tile)"], byproducts: [], cycle: "Logistics", prereq: "Cement Factory", costs: { Stone: 12, Glass: 8, Steel: 8, Plank: 6 } },
+      { id: "school", name: "School", category: "Accommodation", workers: 6, power: false, outputs: ["Peep Growth"], byproducts: [], cycle: "Service", prereq: "Hut", costs: { Plank: 10, Stone: 12, Tool: 6, Iron: 4 } },
+      { id: "house", name: "House (7 Housing)", category: "Accommodation", workers: 7, power: false, outputs: ["Housing (7)"], byproducts: [], cycle: "Housing", prereq: "School", costs: { Plank: 12, Stone: 14, Tool: 4, Glass: 4, Steel: 2 } },
+      { id: "apartment", name: "Apartment (8 Housing)", category: "Accommodation", workers: 8, power: false, outputs: ["Housing (8)"], byproducts: [], cycle: "Housing", prereq: "House", costs: { Stone: 18, Cement: 12, Tool: 6, Glass: 16, Plank: 20, Steel: 10 } },
+      { id: "homestead", name: "Homestead", category: "Accommodation", workers: 2, power: false, outputs: ["Potato", "Water"], byproducts: [], cycle: "Housing", prereq: "Apartment", costs: { Cement: 12, Electronics: 10, Glass: 10, Steel: 6, Water: 10, Potato: 10 } },
+      { id: "town_centre", name: "Town Centre", category: "Accommodation", workers: 0, power: false, outputs: ["Hub"], byproducts: [], cycle: "Hub", prereq: "Metal Smelter", costs: { Plank: 20, Tool: 24, Stone: 50, Glass: 24, Steel: 30 } },
+      { id: "power_line", name: "Power Line", category: "Power", workers: 0, power: false, outputs: ["Grid Link"], byproducts: [], cycle: "Grid", prereq: "Ore Smelter", costs: { Copper: 1, Wood: 1 } },
+      { id: "electronics_plant", name: "Electronics Plant", category: "Advanced", workers: 4, power: true, outputs: ["Electronics"], byproducts: ["Goo"], cycle: "Standard", prereq: "Ore Smelter", costs: { Tool: 6, Stone: 8, Steel: 10, Glass: 4 } },
+      { id: "trawler", name: "Trawler", category: "Construction", workers: 2, power: false, outputs: ["Shell"], byproducts: [], cycle: "Standard", prereq: "Early", costs: { Plank: 16, Iron: 12, Stone: 8, Glass: 2, Tool: 6 } },
+      { id: "cement_factory", name: "Cement Factory", category: "Construction", workers: 3, power: true, outputs: ["Cement"], byproducts: ["Sludge"], cycle: "Standard", prereq: "Trawler", costs: { Steel: 16, Stone: 20, Tool: 8, Glass: 4 } },
+      { id: "landscaper", name: "Landscaper", category: "Terraforming", workers: 3, power: false, outputs: ["Terraforming"], byproducts: [], cycle: "Standard", prereq: "Metal Smelter", costs: { Steel: 4, Stone: 8, Plank: 8, Tool: 6 } },
+      { id: "compost_heap", name: "Compost Heap", category: "Terraforming", workers: 2, power: false, outputs: ["Compost (x3)"], byproducts: [], cycle: "Standard", prereq: "Landscaper", costs: { Tool: 4, Stone: 6, Wood: 10 } },
+      { id: "tree_nursery", name: "Tree Nursery", category: "Terraforming", workers: 2, power: false, outputs: ["Sapling"], byproducts: [], cycle: "Standard", prereq: "Compost Heap (10 Compost)", costs: { Wood: 10, Iron: 2, Stone: 14, Glass: 2 } },
+      { id: "farmhouse", name: "Farmhouse", category: "Agriculture", workers: 2, power: false, outputs: ["Wheat", "Bean", "Corn", "Pepper", "Squash", "Cotton", "Tea"], byproducts: [], cycle: "Standard", prereq: "Metal Smelter", costs: { Plank: 12, Stone: 8, Steel: 3, Glass: 2 } },
+      { id: "orchard", name: "Orchard", category: "Agriculture", workers: 3, power: false, outputs: ["Berry", "Melon", "Pear"], byproducts: [], cycle: "Standard", prereq: "Early", costs: { Wood: 8, Plank: 8, Tool: 6 } },
+      { id: "pasture", name: "Pasture", category: "Agriculture", workers: 3, power: false, outputs: ["Milk", "Egg", "Wool"], byproducts: [], cycle: "Standard", prereq: "Farmhouse", costs: { Plank: 16, Stone: 12, Iron: 8, Wheat: 12, Tool: 6 } },
+      { id: "kitchen", name: "Kitchen", category: "PeepResources", workers: 3, power: false, outputs: ["Hot Casserole", "Hot Soup", "Cold Salad", "Cold Snack"], byproducts: [], cycle: "Standard", prereq: "Pasture", costs: { Stone: 14, Iron: 10, Tool: 8, Plank: 10 } },
+      { id: "drink_factory", name: "Drink Factory", category: "PeepResources", workers: 3, power: false, outputs: ["Hot Matcha Latte", "Hot Coffee", "Cold Smoothie", "Cold Pressed Juice"], byproducts: [], cycle: "Standard", prereq: "Orchard", costs: { Stone: 6, Plank: 14, Iron: 10, Tool: 8 } },
+      { id: "cafe", name: "Cafe", category: "PeepResources", workers: 2, power: false, outputs: ["Peep Dining"], byproducts: [], cycle: "Service", prereq: "Kitchen", costs: { Cement: 8, Glass: 6, Plank: 6, Iron: 8, Stone: 8 } },
+      { id: "weaver", name: "Weaver", category: "PeepResources", workers: 2, power: false, outputs: ["Light Cloth", "Heavy Cloth"], byproducts: [], cycle: "Standard", prereq: "Pasture", costs: { Stone: 10, Iron: 4, Tool: 4, Plank: 10 } },
+      { id: "tailor", name: "Tailor", category: "PeepResources", workers: 2, power: true, outputs: ["Warm Weather Clothing", "Cold Weather Clothing"], byproducts: [], cycle: "Standard", prereq: "Weaver", costs: { Glass: 8, Steel: 6, Iron: 10, Stone: 6, Plank: 10 } },
+      { id: "strange_transmitter", name: "Strange Transmitter", category: "Advanced", workers: 0, power: false, outputs: ["Signal"], byproducts: [], cycle: "Quest", prereq: "Electronics Plant", costs: { Tool: 6, Electronics: 8, Steel: 10, Glass: 2 } },
+      { id: "fuel_plant", name: "Fuel Plant", category: "Hazardous", workers: 2, power: true, outputs: ["Fuel"], byproducts: ["Goo"], cycle: "Standard", prereq: "Strange Transmitter", costs: { Tool: 6, Steel: 6, Plank: 8, Stone: 4 } },
+      { id: "biofuel_refinery", name: "Biofuel Refinery", category: "Hazardous", workers: 2, power: false, outputs: ["Fuel (x2)"], byproducts: [], cycle: "Standard", prereq: "Kitchen", costs: { Plank: 8, Iron: 12, Stone: 10, Cement: 6 } },
+      { id: "fuel_generator", name: "Fuel Generator", category: "Power", workers: 4, power: false, outputs: ["Power"], byproducts: ["Sludge"], cycle: "Standard", prereq: "Fuel Plant", costs: { Tool: 12, Stone: 20, Steel: 18, Iron: 10 } },
+      { id: "chemical_factory", name: "Chemical Factory", category: "Hazardous", workers: 3, power: true, outputs: ["Chemicals"], byproducts: [], cycle: "Standard", prereq: "Fuel Plant", costs: { Iron: 12, Steel: 10, Stone: 12, Tool: 3 } },
+      { id: "cleaner", name: "Cleaner", category: "Hazardous", workers: 3, power: false, outputs: ["Pollution Removal"], byproducts: [], cycle: "Service", prereq: "Chemical Factory", costs: { Iron: 5, Steel: 5, Stone: 4, Tool: 6, Plank: 6 } },
+      { id: "battery_plant", name: "Battery Plant", category: "Construction", workers: 4, power: true, outputs: ["Battery"], byproducts: [], cycle: "Standard", prereq: "Chemical Factory", costs: { Stone: 12, Iron: 12, Steel: 6, Tool: 3 } },
+      { id: "battery_generator", name: "Battery Generator", category: "Power", workers: 2, power: false, outputs: ["Power"], byproducts: [], cycle: "Standard", prereq: "Battery Plant", costs: { Iron: 6, Steel: 10, Cement: 12, Tool: 6 } },
+      { id: "solar_panels", name: "Solar Panels", category: "Power", workers: 0, power: false, outputs: ["Power"], byproducts: [], cycle: "Passive", prereq: "Battery Plant", costs: { Steel: 4, Glass: 4, Electronics: 6, Battery: 12 } },
+      { id: "wind_turbines", name: "Wind Turbines", category: "Power", workers: 0, power: false, outputs: ["Power"], byproducts: [], cycle: "Passive", prereq: "Battery Plant", costs: { Battery: 12, Cement: 6, Electronics: 6, Iron: 2 } },
+      { id: "hydroponic_garden", name: "Hydroponic Garden", category: "Agriculture", workers: 3, power: false, outputs: ["Crops"], byproducts: [], cycle: "Standard", prereq: "Solar Panels", costs: { Cement: 12, Steel: 8, Glass: 12, Electronics: 10, Water: 10 } },
+      { id: "research_facility", name: "Research Facility", category: "Advanced", workers: 4, power: true, outputs: ["Tech"], byproducts: [], cycle: "Standard", prereq: "Fuel Generator", costs: { Cement: 20, Steel: 12, Glass: 6, Electronics: 16, Tool: 10, Battery: 10 } },
+      { id: "blast_mine", name: "Blast Mine", category: "Construction", workers: 3, power: true, outputs: ["Crystal"], byproducts: [], cycle: "Standard", prereq: "Research Facility", costs: { Cement: 8, Steel: 12, Stone: 8, Tool: 6 } },
+      { id: "sludge_dehydrator", name: "Sludge Dehydrator", category: "Hazardous", workers: 2, power: true, outputs: ["Water (from Sludge)"], byproducts: [], cycle: "Standard", prereq: "Research Facility", costs: { Iron: 8, Electronics: 5, Cement: 4, Stone: 8, Tool: 4 } },
+      { id: "laser_laboratory", name: "Laser Laboratory", category: "Advanced", workers: 4, power: true, outputs: ["Laser"], byproducts: [], cycle: "Standard", prereq: "Research Facility", costs: { Crystal: 6, Cement: 14, Steel: 12, Glass: 6, Electronics: 8, Tool: 10 } },
+      { id: "observatory", name: "Observatory", category: "Advanced", workers: 0, power: false, outputs: ["Galaxy Scan"], byproducts: [], cycle: "Passive", prereq: "Research Facility", costs: { Crystal: 12, Glass: 10, Cement: 12, Steel: 10, Tool: 8 } },
+      { id: "reformer", name: "Reformer", category: "Terraforming", workers: 2, power: false, outputs: ["Major Terraforming"], byproducts: [], cycle: "Endgame", prereq: "Research Facility", costs: { Laser: 20, Steel: 20, Cement: 50, Tool: 20, Battery: 10, Stone: 30 } },
+      { id: "spaceship_builder", name: "Spaceship Builder", category: "Transport", workers: 2, power: false, outputs: ["Trade Ships"], byproducts: [], cycle: "Standard", prereq: "Fuel Plant", costs: { Tool: 10, Stone: 10, Steel: 10, Glass: 10 } },
+      { id: "space_port", name: "Space Port (120/tile)", category: "Transport", workers: 3, power: false, outputs: ["Interplanetary Trade"], byproducts: [], cycle: "Logistics", prereq: "Spaceship Builder", costs: { Tool: 8, Stone: 16, Steel: 12, Glass: 10 } },
+      { id: "settlement_spaceship", name: "Settlement Spaceship", category: "Transport", workers: 3, power: false, outputs: ["Expansion"], byproducts: [], cycle: "Endgame", prereq: "Strange Transmitter", costs: { Stone: 10, Steel: 14, Tool: 12, Electronics: 12, Fuel: 20 } },
+      { id: "by_product_yard", name: "By-Product Yard", category: "Hazardous", workers: 2, power: false, outputs: ["By-product Buffer"], byproducts: [], cycle: "Logistics", prereq: "Early", costs: { Iron: 4, Stone: 16, Tool: 4, Plank: 6 } },
+      { id: "destressor", name: "Destressor", category: "PeepResources", workers: 1, power: true, outputs: ["Stress Relief"], byproducts: ["Goo"], cycle: "Service", prereq: "Mid", costs: { Stone: 10, Iron: 4, Tool: 4, Plank: 10 } }
+    ];
+
+    const ADJACENCY_RULES = [
+      {
+        id: "hut",
+        name: "Hut (Accommodation)",
+        cycle: "2 Housing Spots · 0 Pollution",
+        summary: "Huts are the backbone of early Peep population. Their placement relative to Potato Patches, other Huts, and Houses dramatically alters settlement Happiness and Housing cap.",
+        strategy: "Arrange Huts so each touches exactly 2 Potato Patches (+20% Happiness, or +40% with the early 'Increase Happiness' Perk). Avoid sandwiching a Hut between 2 Houses (-20% Happiness) and never place a Hut touching a Water Pump (-20% Water Pump speed).",
+        conditions: [
+          { label: "Adjacent to 2x Potato Patches", effect: "+20% Happiness (+40% with Perk)", type: "bonus" },
+          { label: "Adjacent to 3x Other Huts", effect: "+1 Housing Spot (3 total), but -20% energy restored by food/drink", type: "mixed" },
+          { label: "Adjacent to 2x Houses", effect: "+30% Food/Drink storage, but -20% Happiness", type: "penalty" },
+          { label: "Adjacent to 1x Water Pump", effect: "Inflicts -20% Production Speed on the Water Pump!", type: "penalty" }
+        ]
+      },
+      {
+        id: "water_pump",
+        name: "Water Pump (Agriculture)",
+        cycle: "6s Cycle · 0 Workers · 0 Pollution",
+        summary: "Produces Water continuously without workers. Highly sensitive to tile pollution and nearby housing.",
+        strategy: "Look at the curving riverway near the Home Spaceship for land tiles protruding into the river (surrounded on 3 sides by water). Placing Water Pumps on these outcroppings gives +30% Storage, often eliminating the need for dedicated Water Storage Sheds.",
+        conditions: [
+          { label: "Surrounded by 3x Underwater Tiles (River Outcropping)", effect: "+30% Water Storage Capacity", type: "bonus" },
+          { label: "Touching 1x Hut", effect: "-20% Water Production Speed", type: "penalty" },
+          { label: "Placed on Polluted Tile", effect: "Severe Production Speed reduction", type: "penalty" }
+        ]
+      },
+      {
+        id: "woodcutter",
+        name: "Woodcutter (Construction)",
+        cycle: "5s Cycle · 1 Worker · Outputs Wood + Wood Waste",
+        summary: "Harvests Trunks from nearby Forests without ever permanently depleting them, converting them into Wood and Wood Waste.",
+        strategy: "Nestle single Woodcutters inside deep pockets of Forest so all non-road sides touch trees (+30% Storage). Never place two Woodcutters directly touching each other!",
+        conditions: [
+          { label: "Surrounded by 5x Forests (all sides except road)", effect: "+30% Storage Capacity", type: "bonus" },
+          { label: "Touching Another Woodcutter", effect: "-20% Production Speed penalty", type: "penalty" }
+        ]
+      },
+      {
+        id: "mine",
+        name: "Mine (Construction)",
+        cycle: "2s Cycle · 2 Workers · Low Pollution",
+        summary: "Extracts Stone, Iron Ore, Copper Ore, and Sand from deposits on Kewa's back. Fast 2s cycle easily feeds downstream smelters.",
+        strategy: "Use single Mines surrounded by 1-2 Forests to absorb pollution. Only double-stack Mines touching each other when rushing to empty a nearly depleted deposit before terraforming.",
+        conditions: [
+          { label: "Touching Another Mine", effect: "+20% Bonus resources per cycle, but +25% more Pollution", type: "mixed" },
+          { label: "1x Nearby Tile Underwater", effect: "-25% Pollution, but -20% slower production speed", type: "mixed" }
+        ]
+      },
+      {
+        id: "ore_smelter",
+        name: "Ore Smelter (Construction)",
+        cycle: "5s Cycle · 4 Workers · Req. Power · Medium Pollution",
+        summary: "Refines Iron Ore -> Iron (5s) and Copper Ore -> Copper (5s) while generating Soot by-product.",
+        strategy: "Place touching one edge of a Burner Generator (leaving 4 empty tiles around the generator) and pair with 1x Cleaner in mid-game for +20% smelting speed. Never touch two Ore Smelters together.",
+        conditions: [
+          { label: "Touching 1x Cleaner", effect: "+20% Production Speed, +25% Pollution rate", type: "bonus" },
+          { label: "Touching Another Ore Smelter", effect: "-30% Storage and -1 Workplace slot!", type: "penalty" }
+        ]
+      },
+      {
+        id: "burner_generator",
+        name: "Burner Generator (Power)",
+        cycle: "15s Cycle · 2 Workers · Burns Wood/Wood Waste -> Power + Soot",
+        summary: "First Power building unlocked after mining 5 Iron Ore. Powers adjacent buildings directly until Power Lines are unlocked.",
+        strategy: "Keep at least 4 empty/road tiles around the Burner Generator to cut its heavy pollution by -25%. Do NOT burn Wood Waste here if you are preparing to build a Compost Heap!",
+        conditions: [
+          { label: "4x Empty Tiles (including roads) around it", effect: "-25% Pollution, -20% speed", type: "bonus" },
+          { label: "Surrounded by Forests", effect: "Natural pollution absorption", type: "bonus" }
+        ]
+      },
+      {
+        id: "landscaper_nursery",
+        name: "Landscaper + Tree Nursery + Decorations",
+        cycle: "Terraforming & Happiness Synergy",
+        summary: "Strategic placement of Terraforming and Decoration buildings unlocks pure positive buffs without triggering negative cross-penalties.",
+        strategy: "Place the Landscaper next to the Tree Nursery, but keep it separated from the Compost Heap so only the positive adjacency triggers. Place early Decorations in a 3-building triangle so each touches 2 others for +20% Happiness.",
+        conditions: [
+          { label: "Landscaper touching Tree Nursery (NOT touching Compost Heap)", effect: "Activates pure positive Terraforming adjacency bonus", type: "bonus" },
+          { label: "Decoration touching 2x other Decorations (Triangle of 3)", effect: "+20% Happiness bonus on each decoration", type: "bonus" }
+        ]
+      }
+    ];
+
+    const FOODS = [
+      { name: "Hot Casserole", category: "Meal (Kitchen -> Cafe)", happiness: 200, exhaustion: 0.75, chain: "Kitchen -> CafeInput" },
+      { name: "Cold Snack", category: "Meal (Kitchen -> Cafe)", happiness: 150, exhaustion: 0.75, chain: "Kitchen -> CafeInput" },
+      { name: "Hot Matcha Latte", category: "Beverage (Drink Factory -> Cafe)", happiness: 150, exhaustion: 0.75, chain: "Tea / Milk -> Drink Factory -> Cafe" },
+      { name: "Cold Dessert", category: "Meal (Kitchen -> Cafe)", happiness: 100, exhaustion: 0.75, chain: "Kitchen -> CafeInput" },
+      { name: "Hot Pudding", category: "Meal (Kitchen -> Cafe)", happiness: 100, exhaustion: 0.75, chain: "Kitchen -> CafeInput" },
+      { name: "Cold Smoothie", category: "Beverage (Drink Factory)", happiness: 100, exhaustion: 0.75, chain: "Orchard Fruit -> Drink Factory -> Cafe" },
+      { name: "Hot Coffee", category: "Beverage (Drink Factory)", happiness: 100, exhaustion: 0.75, chain: "Drink Factory -> CafeInput" },
+      { name: "Berry", category: "Raw Fruit (Orchard)", happiness: 100, exhaustion: 0.55, chain: "Orchard -> Direct / Kitchen / Drink Factory" },
+      { name: "Melon", category: "Raw Fruit (Orchard)", happiness: 100, exhaustion: 0.55, chain: "Orchard -> Direct / Kitchen / Drink Factory" },
+      { name: "Pear", category: "Raw Fruit (Orchard)", happiness: 100, exhaustion: 0.55, chain: "Orchard -> Direct / Kitchen / Drink Factory" },
+      { name: "Corn", category: "Raw Crop (Farmhouse)", happiness: 75, exhaustion: 0.55, chain: "Farmhouse -> Kitchen / Drink Factory" },
+      { name: "Squash", category: "Raw Crop (Farmhouse)", happiness: 75, exhaustion: 0.55, chain: "Farmhouse -> Kitchen / Drink Factory" },
+      { name: "Cold Pressed Juice", category: "Beverage (Drink Factory)", happiness: 50, exhaustion: 0.75, chain: "Drink Factory -> CafeInput" },
+      { name: "Cold Salad", category: "Meal (Kitchen)", happiness: 50, exhaustion: 0.75, chain: "Kitchen -> CafeInput" },
+      { name: "Hot Soup", category: "Meal (Kitchen)", happiness: 50, exhaustion: 0.75, chain: "Kitchen -> CafeInput" },
+      { name: "Hot Tea", category: "Beverage (Drink Factory)", happiness: 50, exhaustion: 0.75, chain: "Tea -> Drink Factory -> CafeInput" },
+      { name: "Pepper", category: "Raw Crop (Farmhouse)", happiness: 50, exhaustion: 0.55, chain: "Farmhouse -> KitchenInput" },
+      { name: "Bean", category: "Raw Crop (Farmhouse)", happiness: 15, exhaustion: 0.55, chain: "Farmhouse -> KitchenInput" },
+      { name: "Potato", category: "Starter Crop (Potato Patch)", happiness: 0, exhaustion: 0.55, chain: "Potato Patch / Homestead (Prevents starvation, 0 Happiness)" },
+      { name: "Water", category: "Starter Drink (Water Pump)", happiness: 0, exhaustion: 0.55, chain: "Water Pump / Sludge Dehydrator" }
+    ];
+
+    let plan = {
+      woodcutter: 2,
+      mine: 2,
+      water_pump: 2,
+      hut: 4,
+      potato_patch: 4,
+      burner_generator: 1,
+      ore_smelter: 1,
+      toolsmith: 1
+    };
+
+    let selectedAdjId = ADJACENCY_RULES[0].id;
+
+    function initMonetizationWidgets() {
+      // Apply Ko-fi links
+      const topKofi = document.getElementById("topKofiLink");
+      const sideKofi = document.getElementById("sidebarKofiBtn");
+      if (topKofi) topKofi.href = MONETIZATION_CONFIG.kofiUrl;
+      if (sideKofi) {
+        sideKofi.href = MONETIZATION_CONFIG.kofiUrl;
+        sideKofi.textContent = "☕ " + MONETIZATION_CONFIG.supportLabel;
+      }
+
+      // Render Affiliate Deals
+      const affContainer = document.getElementById("affiliateContainer");
+      if (affContainer && Array.isArray(MONETIZATION_CONFIG.affiliateDeals)) {
+        affContainer.innerHTML = MONETIZATION_CONFIG.affiliateDeals.map(d => `
+          <a href="${d.url}" target="_blank" rel="noopener sponsored" class="block p-3 rounded-lg bg-slate-950 hover:bg-slate-900 border border-slate-800 hover:border-teal-500/50 transition group">
+            <div class="flex items-center justify-between gap-2">
+              <div class="space-y-0.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-teal-500/20 text-teal-300 border border-teal-500/30">${d.badge}</span>
+                  <span class="text-[11px] text-slate-400">${d.store}</span>
+                </div>
+                <div class="text-xs font-semibold text-white group-hover:text-teal-300 transition">${d.title}</div>
+              </div>
+              <div class="text-right shrink-0">
+                <div class="text-sm font-bold text-emerald-400">${d.price}</div>
+                <div class="text-[11px] text-teal-300 underline">${d.cta}</div>
+              </div>
+            </div>
+          </a>
+        `).join("");
+      }
+
+      // Render AdSense container if configured
+      if (MONETIZATION_CONFIG.adsenseClientId && MONETIZATION_CONFIG.adsenseSlotId) {
+        const wrapper = document.getElementById("adsenseBannerWrapper");
+        wrapper.classList.remove("hidden");
+        wrapper.innerHTML = `
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="${MONETIZATION_CONFIG.adsenseClientId}"
+               data-ad-slot="${MONETIZATION_CONFIG.adsenseSlotId}"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+        `;
+        try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+      }
+    }
+
+    function switchTab(tab) {
+      ['bom', 'adjacency', 'byproducts', 'food'].forEach(t => {
+        document.getElementById('panel-' + t).classList.toggle('hidden', t !== tab);
+        const btn = document.getElementById('tab-' + t);
+        if (t === tab) {
+          btn.className = 'tab-btn px-3.5 py-2 rounded-lg text-sm font-medium bg-teal-500 text-slate-950 transition';
+        } else {
+          btn.className = 'tab-btn px-3.5 py-2 rounded-lg text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
+        }
+      });
+    }
+
+    function updateQty(id, delta) {
+      const next = (plan[id] || 0) + delta;
+      if (next <= 0) {
+        delete plan[id];
+      } else {
+        plan[id] = next;
+      }
+      renderBuildingSelector();
+      renderBOM();
+    }
+
+    function loadPreset(type) {
+      if (type === 'starter') {
+        plan = { woodcutter: 2, water_pump: 2, hut: 6, potato_patch: 6, mine: 2, storage_shed: 2 };
+      } else if (type === 'industrial') {
+        plan = { mine: 3, burner_generator: 2, ore_smelter: 2, metal_smelter: 2, toolsmith: 2, sawmill: 2, power_line: 6, storage_shed: 4 };
+      } else if (type === 'endgame') {
+        plan = { research_facility: 1, blast_mine: 2, laser_laboratory: 2, reformer: 1, space_port: 1, solar_panels: 4, warehouse: 3 };
+      }
+      renderBuildingSelector();
+      renderBOM();
+    }
+
+    function clearPlan() {
+      plan = {};
+      renderBuildingSelector();
+      renderBOM();
+    }
+
+    function renderBuildingSelector() {
+      const q = (document.getElementById('buildingSearch').value || '').toLowerCase();
+      const cat = document.getElementById('categoryFilter').value;
+      const container = document.getElementById('buildingSelectorList');
+
+      const filtered = BUILDINGS.filter(b => {
+        const matchCat = cat === 'ALL' || b.category === cat;
+        const matchQ = !q || b.name.toLowerCase().includes(q) || b.outputs.join(' ').toLowerCase().includes(q) || b.byproducts.join(' ').toLowerCase().includes(q);
+        return matchCat && matchQ;
+      });
+
+      container.innerHTML = filtered.map(b => {
+        const count = plan[b.id] || 0;
+        const costStr = Object.entries(b.costs).map(([k, v]) => `${v} ${k}`).join(' · ');
+        const bypBadge = b.byproducts.length
+          ? `<span class="text-[11px] px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30">By-product: ${b.byproducts.join(', ')}</span>`
+          : '';
+        const pwrBadge = b.power
+          ? `<span class="text-[11px] px-1.5 py-0.5 rounded bg-sky-500/15 text-sky-300 border border-sky-500/30">⚡ Req. Power</span>`
+          : '';
+
+        return `
+          <div class="py-3 flex items-center justify-between gap-3">
+            <div class="space-y-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="font-medium text-white text-sm">${b.name}</span>
+                <span class="text-[11px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">${b.category}</span>
+                <span class="text-[11px] text-slate-400">👷 ${b.workers}</span>
+                ${pwrBadge}
+                ${bypBadge}
+              </div>
+              <div class="text-xs text-slate-400">
+                <span class="text-slate-500">Cost:</span> ${costStr || 'Free'}
+                <span class="mx-1.5 text-slate-700">|</span>
+                <span class="text-teal-400/90">Out: ${b.outputs.join(', ')} (${b.cycle})</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <button onclick="updateQty('${b.id}', -1)" class="w-7 h-7 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold">-</button>
+              <span class="w-7 text-center text-sm font-semibold ${count > 0 ? 'text-teal-400' : 'text-slate-500'}">${count}</span>
+              <button onclick="updateQty('${b.id}', 1)" class="w-7 h-7 rounded bg-teal-500/20 hover:bg-teal-500/30 text-teal-300 border border-teal-500/40 font-bold">+</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderBOM() {
+      const totals = {};
+      let workers = 0;
+      let powerHungryBldgs = 0;
+      let generators = 0;
+      const outputsSet = new Set();
+      const byproductsSet = new Set();
+      const prereqsSet = new Set();
+
+      const queueEntries = Object.entries(plan).filter(([, c]) => c > 0);
+      const queueContainer = document.getElementById('plannedQueueList');
+
+      if (queueEntries.length === 0) {
+        queueContainer.innerHTML = `<div class="text-xs text-slate-500 italic py-2">No buildings selected. Click + on the left or pick a preset above.</div>`;
+      } else {
+        queueContainer.innerHTML = queueEntries.map(([id, count]) => {
+          const b = BUILDINGS.find(x => x.id === id);
+          if (!b) return '';
+          workers += b.workers * count;
+          if (b.power) powerHungryBldgs += count;
+          if (b.category === 'Power' && b.id !== 'power_line') generators += count;
+          b.outputs.forEach(o => outputsSet.add(o));
+          b.byproducts.forEach(bp => byproductsSet.add(`${bp} (from ${b.name})`));
+          if (b.prereq && b.prereq !== 'Start') prereqsSet.add(b.prereq);
+
+          Object.entries(b.costs).forEach(([mat, qty]) => {
+            totals[mat] = (totals[mat] || 0) + qty * count;
+          });
+
+          return `
+            <div class="flex items-center justify-between bg-slate-950/70 px-2.5 py-1.5 rounded border border-slate-800/80">
+              <span class="text-slate-200">${count}× ${b.name}</span>
+              <button onclick="updateQty('${b.id}', -${count})" class="text-xs text-slate-500 hover:text-rose-400">Remove</button>
+            </div>
+          `;
+        }).join('');
+      }
+
+      const totalResourceUnits = Object.values(totals).reduce((a, b) => a + b, 0);
+      const shedsNeeded = Math.ceil(totalResourceUnits / 80);
+
+      document.getElementById('kpiWorkers').textContent = `${workers} Peeps`;
+      document.getElementById('kpiHutsEquiv').textContent = `≈ ${Math.ceil(workers / 2)} Standard Huts`;
+      document.getElementById('kpiPower').textContent = `${powerHungryBldgs} Need ⚡`;
+      document.getElementById('kpiGenerators').textContent = `${generators} Power Gen in plan`;
+      document.getElementById('kpiStorage').textContent = `${totalResourceUnits} Mat.`;
+      document.getElementById('kpiSheds').textContent = `≈ ${shedsNeeded} Storage Sheds (80/tile)`;
+
+      const matGrid = document.getElementById('bomMaterialsGrid');
+      const sortedMats = Object.entries(totals).sort((a, b) => b[1] - a[1]);
+      if (sortedMats.length === 0) {
+        matGrid.innerHTML = `<div class="col-span-3 text-xs text-slate-500">0 materials required.</div>`;
+      } else {
+        matGrid.innerHTML = sortedMats.map(([mat, qty]) => `
+          <div class="bg-slate-950 border border-slate-800 rounded px-3 py-2 flex items-center justify-between">
+            <span class="text-xs text-slate-300">${mat}</span>
+            <span class="text-sm font-bold text-white">${qty}</span>
+          </div>
+        `).join('');
+      }
+
+      const bypHtml = byproductsSet.size > 0
+        ? `<div class="mt-1.5 p-2 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300">⚠️ <strong>Active By-Products:</strong> ${Array.from(byproductsSet).join(' · ')}. Ensure Storage Sheds or By-Product Yards are built nearby or production will halt!</div>`
+        : `<div class="mt-1 text-emerald-400">✓ No hazardous by-products in current selection.</div>`;
+
+      document.getElementById('bomOutputs').innerHTML = `
+        <div><strong>Outputs:</strong> ${Array.from(outputsSet).join(', ') || 'None'}</div>
+        ${bypHtml}
+      `;
+      document.getElementById('bomPrereqs').textContent = Array.from(prereqsSet).join(' → ') || 'None (Starter unlocked)';
+    }
+
+    function renderAdjacencyTab() {
+      const btnContainer = document.getElementById('adjBuildingButtons');
+      btnContainer.innerHTML = ADJACENCY_RULES.map(r => {
+        const active = r.id === selectedAdjId;
+        return `
+          <button
+            onclick="selectAdjBuilding('${r.id}')"
+            class="text-left p-3 rounded-lg border transition ${active ? 'bg-teal-500/15 border-teal-400 text-white' : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700'}"
+          >
+            <div class="font-semibold text-sm">${r.name}</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">${r.cycle}</div>
+          </button>
+        `;
+      }).join('');
+
+      const rule = ADJACENCY_RULES.find(r => r.id === selectedAdjId) || ADJACENCY_RULES[0];
+      document.getElementById('adjTitle').textContent = rule.name;
+      document.getElementById('adjCycleBadge').textContent = rule.cycle;
+      document.getElementById('adjSummary').textContent = rule.summary;
+      document.getElementById('adjStrategyBox').textContent = rule.strategy;
+
+      document.getElementById('adjConditionsList').innerHTML = rule.conditions.map(c => {
+        const badgeColor = c.type === 'bonus'
+          ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+          : c.type === 'penalty'
+          ? 'bg-rose-500/20 text-rose-300 border-rose-500/40'
+          : 'bg-amber-500/20 text-amber-300 border-amber-500/40';
+        const tagText = c.type === 'bonus' ? 'BONUS' : c.type === 'penalty' ? 'PENALTY' : 'TRADE-OFF';
+        return `
+          <div class="p-3 rounded-lg bg-kewa-900 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div class="text-sm font-medium text-white">${c.label}</div>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded border ${badgeColor}">${tagText}</span>
+              <span class="text-xs text-slate-200">${c.effect}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function selectAdjBuilding(id) {
+      selectedAdjId = id;
+      renderAdjacencyTab();
+    }
+
+    function calcStorageMath() {
+      const units = Math.max(20, parseInt(document.getElementById('storageTargetInput').value || '240', 10));
+      const sheds = Math.ceil(units / 80);
+      const batches = Math.ceil(units / 20);
+      const whTiles = (units / 120).toFixed(1);
+
+      document.getElementById('resShedsCount').textContent = `${sheds} Shed${sheds > 1 ? 's' : ''}`;
+      document.getElementById('resShedsBatches').textContent = `${batches} batch slots (20 units/batch)`;
+      document.getElementById('resShedsCost').textContent = `Total Cost: ${sheds * 4} Stone, ${sheds * 2} Tool, ${sheds * 3} Iron, ${sheds * 2} Wood`;
+      document.getElementById('resWarehouseCount').textContent = `${whTiles} Tiles`;
+    }
+
+    function renderFoodTable() {
+      const q = (document.getElementById('foodSearch').value || '').toLowerCase();
+      const tbody = document.getElementById('foodTableBody');
+      const rows = FOODS.filter(f => !q || f.name.toLowerCase().includes(q) || f.category.toLowerCase().includes(q));
+      tbody.innerHTML = rows.map(f => `
+        <tr class="hover:bg-slate-900/60">
+          <td class="py-2.5 px-3 font-medium text-white">${f.name}</td>
+          <td class="py-2.5 px-3 text-slate-300 text-xs">${f.category}</td>
+          <td class="py-2.5 px-3 font-bold ${f.happiness >= 150 ? 'text-teal-400' : f.happiness >= 100 ? 'text-sky-400' : 'text-slate-400'}">+${f.happiness} Happiness</td>
+          <td class="py-2.5 px-3 text-slate-300">${f.exhaustion}</td>
+          <td class="py-2.5 px-3 text-xs text-slate-400">${f.chain}</td>
+        </tr>
+      `).join('');
+    }
+
+    function copyShareLink() {
+      const encoded = encodeURIComponent(JSON.stringify(plan));
+      const baseUrl = window.location.origin.startsWith('http') ? `${window.location.origin}${window.location.pathname}` : MONETIZATION_CONFIG.siteUrl;
+      const url = `${baseUrl}?plan=${encoded}`;
+      navigator.clipboard.writeText(url).then(() => {
+        const btn = document.getElementById('shareBtnTop');
+        btn.textContent = '✓ Link Copied!';
+        setTimeout(() => { btn.textContent = 'Copy Shareable Build Link'; }, 2500);
+      });
+    }
+
+    // Viral Backlink Engine: Exports a Reddit/Steam Markdown table with embedded link back to your site!
+    function copyRedditMarkdown() {
+      const entries = Object.entries(plan).filter(([, c]) => c > 0);
+      if (entries.length === 0) return;
+      const totals = {};
+      let workers = 0;
+      entries.forEach(([id, count]) => {
+        const b = BUILDINGS.find(x => x.id === id);
+        if (!b) return;
+        workers += b.workers * count;
+        Object.entries(b.costs).forEach(([m, q]) => { totals[m] = (totals[m] || 0) + q * count; });
+      });
+      const encoded = encodeURIComponent(JSON.stringify(plan));
+      const shareUrl = `${MONETIZATION_CONFIG.siteUrl}/?plan=${encoded}`;
+      const bldgLines = entries.map(([id, c]) => {
+        const b = BUILDINGS.find(x => x.id === id);
+        return `| ${c}x ${b.name} | ${b.workers * c} Peeps | ${b.outputs.join(', ')} |`;
+      }).join('\n');
+      const matSummary = Object.entries(totals).map(([m, q]) => `**${q}** ${m}`).join(' · ');
+
+      const md = [
+        `### My Beyond These Stars Settlement Plan (${workers} Peeps)`,
+        ``,
+        `| Building | Workers | Outputs |`,
+        `| :--- | :--- | :--- |`,
+        bldgLines,
+        ``,
+        `**Total Construction BOM:** ${matSummary}`,
+        ``,
+        `* interactively planned via [Beyond These Stars Production & Adjacency Calculator](${shareUrl})*`
+      ].join('\n');
+
+      navigator.clipboard.writeText(md).then(() => {
+        const btn = document.getElementById('redditBtnTop');
+        btn.textContent = '✓ Reddit/Steam Markdown Copied!';
+        setTimeout(() => { btn.textContent = 'Export Reddit/Steam Table'; }, 2500);
+      });
+    }
+
+    function loadFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const raw = params.get('plan');
+      if (raw) {
+        try {
+          const parsed = JSON.parse(decodeURIComponent(raw));
+          if (parsed && typeof parsed === 'object') plan = parsed;
+        } catch (e) {}
+      }
+    }
+
+    // Initialize
+    loadFromUrl();
+    initMonetizationWidgets();
+    renderBuildingSelector();
+    renderBOM();
+    renderAdjacencyTab();
+    calcStorageMath();
+    renderFoodTable();
+  </script>
+</body>
+</html>
