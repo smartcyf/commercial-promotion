@@ -155,9 +155,11 @@
 
   <!-- Top Announcement / Patch Banner -->
   <div class="bg-teal-950/80 border-b border-teal-800/60 px-4 py-2 text-xs text-teal-200 flex flex-wrap items-center justify-between gap-2">
-    <div class="flex items-center gap-2">
+    <div class="flex flex-wrap items-center gap-3">
       <span class="inline-block w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
-      <span><strong>Launch Ready (Oct 2026 Build):</strong> Verified against official Hooded Horse Wiki data — 64 Buildings, 58 Resources, Adjacency Rules &amp; Storage Math.</span>
+      <span><strong>Launch Ready (Oct 2026 Build):</strong> 64 Buildings, 58 Resources &amp; Adjacency Math</span>
+      <span class="text-teal-700">|</span>
+      <a href="./neon-abyss-2/" class="text-pink-300 hover:text-white font-semibold underline">⚡ New: Neon Abyss 2 Synergy Calculator (610 Items) →</a>
     </div>
     <div class="flex items-center gap-4">
       <button onclick="copyShareLink()" id="shareBtnTop" class="text-teal-300 hover:text-white underline cursor-pointer">Copy Shareable Build Link</button>
@@ -566,87 +568,933 @@
     ];
 
     const ADJACENCY_RULES = [
+  {
+    "id": "apartment",
+    "name": "Apartment (Accommodation)",
+    "cycle": "Pollution: None · Build: 10.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Apartment has 1 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
       {
-        id: "hut",
-        name: "Hut (Accommodation)",
-        cycle: "2 Housing Spots · 0 Pollution",
-        summary: "Huts are the backbone of early Peep population. Their placement relative to Potato Patches, other Huts, and Houses dramatically alters settlement Happiness and Housing cap.",
-        strategy: "Arrange Huts so each touches exactly 2 Potato Patches (+20% Happiness, or +40% with the early 'Increase Happiness' Perk). Avoid sandwiching a Hut between 2 Houses (-20% Happiness) and never place a Hut touching a Water Pump (-20% Water Pump speed).",
-        conditions: [
-          { label: "Adjacent to 2x Potato Patches", effect: "+20% Happiness (+40% with Perk)", type: "bonus" },
-          { label: "Adjacent to 3x Other Huts", effect: "+1 Housing Spot (3 total), but -20% energy restored by food/drink", type: "mixed" },
-          { label: "Adjacent to 2x Houses", effect: "+30% Food/Drink storage, but -20% Happiness", type: "penalty" },
-          { label: "Adjacent to 1x Water Pump", effect: "Inflicts -20% Production Speed on the Water Pump!", type: "penalty" }
-        ]
-      },
-      {
-        id: "water_pump",
-        name: "Water Pump (Agriculture)",
-        cycle: "6s Cycle · 0 Workers · 0 Pollution",
-        summary: "Produces Water continuously without workers. Highly sensitive to tile pollution and nearby housing.",
-        strategy: "Look at the curving riverway near the Home Spaceship for land tiles protruding into the river (surrounded on 3 sides by water). Placing Water Pumps on these outcroppings gives +30% Storage, often eliminating the need for dedicated Water Storage Sheds.",
-        conditions: [
-          { label: "Surrounded by 3x Underwater Tiles (River Outcropping)", effect: "+30% Water Storage Capacity", type: "bonus" },
-          { label: "Touching 1x Hut", effect: "-20% Water Production Speed", type: "penalty" },
-          { label: "Placed on Polluted Tile", effect: "Severe Production Speed reduction", type: "penalty" }
-        ]
-      },
-      {
-        id: "woodcutter",
-        name: "Woodcutter (Construction)",
-        cycle: "5s Cycle · 1 Worker · Outputs Wood + Wood Waste",
-        summary: "Harvests Trunks from nearby Forests without ever permanently depleting them, converting them into Wood and Wood Waste.",
-        strategy: "Nestle single Woodcutters inside deep pockets of Forest so all non-road sides touch trees (+30% Storage). Never place two Woodcutters directly touching each other!",
-        conditions: [
-          { label: "Surrounded by 5x Forests (all sides except road)", effect: "+30% Storage Capacity", type: "bonus" },
-          { label: "Touching Another Woodcutter", effect: "-20% Production Speed penalty", type: "penalty" }
-        ]
-      },
-      {
-        id: "mine",
-        name: "Mine (Construction)",
-        cycle: "2s Cycle · 2 Workers · Low Pollution",
-        summary: "Extracts Stone, Iron Ore, Copper Ore, and Sand from deposits on Kewa's back. Fast 2s cycle easily feeds downstream smelters.",
-        strategy: "Use single Mines surrounded by 1-2 Forests to absorb pollution. Only double-stack Mines touching each other when rushing to empty a nearly depleted deposit before terraforming.",
-        conditions: [
-          { label: "Touching Another Mine", effect: "+20% Bonus resources per cycle, but +25% more Pollution", type: "mixed" },
-          { label: "1x Nearby Tile Underwater", effect: "-25% Pollution, but -20% slower production speed", type: "mixed" }
-        ]
-      },
-      {
-        id: "ore_smelter",
-        name: "Ore Smelter (Construction)",
-        cycle: "5s Cycle · 4 Workers · Req. Power · Medium Pollution",
-        summary: "Refines Iron Ore -> Iron (5s) and Copper Ore -> Copper (5s) while generating Soot by-product.",
-        strategy: "Place touching one edge of a Burner Generator (leaving 4 empty tiles around the generator) and pair with 1x Cleaner in mid-game for +20% smelting speed. Never touch two Ore Smelters together.",
-        conditions: [
-          { label: "Touching 1x Cleaner", effect: "+20% Production Speed, +25% Pollution rate", type: "bonus" },
-          { label: "Touching Another Ore Smelter", effect: "-30% Storage and -1 Workplace slot!", type: "penalty" }
-        ]
-      },
-      {
-        id: "burner_generator",
-        name: "Burner Generator (Power)",
-        cycle: "15s Cycle · 2 Workers · Burns Wood/Wood Waste -> Power + Soot",
-        summary: "First Power building unlocked after mining 5 Iron Ore. Powers adjacent buildings directly until Power Lines are unlocked.",
-        strategy: "Keep at least 4 empty/road tiles around the Burner Generator to cut its heavy pollution by -25%. Do NOT burn Wood Waste here if you are preparing to build a Compost Heap!",
-        conditions: [
-          { label: "4x Empty Tiles (including roads) around it", effect: "-25% Pollution, -20% speed", type: "bonus" },
-          { label: "Surrounded by Forests", effect: "Natural pollution absorption", type: "bonus" }
-        ]
-      },
-      {
-        id: "landscaper_nursery",
-        name: "Landscaper + Tree Nursery + Decorations",
-        cycle: "Terraforming & Happiness Synergy",
-        summary: "Strategic placement of Terraforming and Decoration buildings unlocks pure positive buffs without triggering negative cross-penalties.",
-        strategy: "Place the Landscaper next to the Tree Nursery, but keep it separated from the Compost Heap so only the positive adjacency triggers. Place early Decorations in a 3-building triangle so each touches 2 others for +20% Happiness.",
-        conditions: [
-          { label: "Landscaper touching Tree Nursery (NOT touching Compost Heap)", effect: "Activates pure positive Terraforming adjacency bonus", type: "bonus" },
-          { label: "Decoration touching 2x other Decorations (Triangle of 3)", effect: "+20% Happiness bonus on each decoration", type: "bonus" }
-        ]
+        "label": "Adjacent to 1× School",
+        "effect": "+6 Worker / Housing Slots",
+        "type": "bonus"
       }
-    ];
+    ]
+  },
+  {
+    "id": "battery_plant",
+    "name": "Battery Plant (Construction)",
+    "cycle": "Pollution: VeryHigh · Build: 15.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Battery Plant has 1 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Chemical Factory",
+        "effect": "+20% Bonus Output per cycle",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "biofuel_refinery",
+    "name": "Biofuel Refinery (Hazardous)",
+    "cycle": "Pollution: None · Build: 20.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Biofuel Refinery has 1 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Kitchen",
+        "effect": "+20% Peep Happiness bonus",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Kitchen",
+        "effect": "-30% Potato Storage capacity",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "blast_mine",
+    "name": "Blast Mine (Construction)",
+    "cycle": "Pollution: Low · Build: 30.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Blast Mine has 1 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Fuel Generator",
+        "effect": "+30% Crystal Storage capacity",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "burner_generator",
+    "name": "Burner Generator (Power)",
+    "cycle": "Pollution: Medium · Build: 6.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Burner Generator has 1 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Surrounded by 4× Empty / Road tiles",
+        "effect": "+25% Pollution output",
+        "type": "penalty"
+      },
+      {
+        "label": "Crowded by 5+ adjacent buildings",
+        "effect": "-25% Pollution output",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "by_product_yard",
+    "name": "By-Product Yard (Hazardous)",
+    "cycle": "Pollution: None · Build: 8.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: By-Product Yard has 1 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Cleaner",
+        "effect": "+20% Peep Happiness bonus",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "cafe",
+    "name": "Cafe (PeepResources)",
+    "cycle": "Pollution: None · Build: 15.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Cafe has 2 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Kitchen",
+        "effect": "+30% Meal Storage capacity",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Drink Factory",
+        "effect": "+30% Meal Storage capacity",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "cement_factory",
+    "name": "Cement Factory (Construction)",
+    "cycle": "Pollution: VeryHigh · Build: 20.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Cement Factory has 1 positive adjacency trigger(s) and 2 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Sludge Dehydrator",
+        "effect": "+20% Bonus Output per cycle",
+        "type": "bonus"
+      },
+      {
+        "label": "Surrounded by 3× Underwater / River tiles",
+        "effect": "+25% Pollution output",
+        "type": "penalty"
+      },
+      {
+        "label": "Surrounded by 3× Underwater / River tiles",
+        "effect": "-Kewa Space Whale Reputation penalty! (Pollutes water)",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "chemical_factory",
+    "name": "Chemical Factory (Hazardous)",
+    "cycle": "Pollution: Medium · Build: 20.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Chemical Factory has 1 positive adjacency trigger(s) and 2 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Cement Factory",
+        "effect": "+20% Bonus Output per cycle",
+        "type": "bonus"
+      },
+      {
+        "label": "Surrounded by 3× Underwater / River tiles",
+        "effect": "+25% Pollution output",
+        "type": "penalty"
+      },
+      {
+        "label": "Surrounded by 3× Underwater / River tiles",
+        "effect": "-Kewa Space Whale Reputation penalty! (Pollutes water)",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "cleaner",
+    "name": "Cleaner (Hazardous)",
+    "cycle": "Pollution: None · Build: 8.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Cleaner has 1 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Sludge Dehydrator",
+        "effect": "+20% Production Speed",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Forest",
+        "effect": "-20% Production Speed penalty",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "compost_heap",
+    "name": "Compost Heap (Terraforming)",
+    "cycle": "Pollution: None · Build: 10.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Compost Heap has 1 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Landscaper",
+        "effect": "+20% Bonus Output per cycle",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Biofuel Refinery",
+        "effect": "-1 Worker Slots penalty",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "drink_factory",
+    "name": "Drink Factory (PeepResources)",
+    "cycle": "Pollution: High · Build: 10.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Drink Factory has 1 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 2× Orchard",
+        "effect": "+30% Beverage Storage capacity",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Weaver",
+        "effect": "-1 Worker Slots penalty",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "electronics_plant",
+    "name": "Electronics Plant (Advanced)",
+    "cycle": "Pollution: High · Build: 6.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Electronics Plant has 0 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Metal Smelter",
+        "effect": "+25% Pollution output",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "farmhouse",
+    "name": "Farmhouse (Agriculture)",
+    "cycle": "Pollution: None · Build: 5.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Farmhouse has 1 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 2× Pasture",
+        "effect": "+30% Farmhouse Storage capacity",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Drink Factory",
+        "effect": "-30% Farmhouse Storage capacity",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "festive_lamps",
+    "name": "Festive Lamps (Decoration)",
+    "cycle": "Pollution: None · Build: 10.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Festive Lamps has 1 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Festive Lamps",
+        "effect": "+20% Peep Happiness bonus",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "fountain",
+    "name": "Fountain (Decoration)",
+    "cycle": "Pollution: None · Build: 5.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Fountain has 1 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Surrounded by 2× Empty / Road tiles",
+        "effect": "+20% Peep Happiness bonus",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "fuel_generator",
+    "name": "Fuel Generator (Power)",
+    "cycle": "Pollution: High · Build: 15.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Fuel Generator has 1 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Biofuel Refinery",
+        "effect": "+25% Pollution output",
+        "type": "penalty"
+      },
+      {
+        "label": "Crowded by 8+ adjacent buildings",
+        "effect": "-25% Pollution output",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "fuel_plant",
+    "name": "Fuel Plant (Hazardous)",
+    "cycle": "Pollution: VeryHigh · Build: 15.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Fuel Plant has 0 positive adjacency trigger(s) and 2 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Surrounded by 3× Underwater / River tiles",
+        "effect": "+25% Pollution output",
+        "type": "penalty"
+      },
+      {
+        "label": "Surrounded by 3× Underwater / River tiles",
+        "effect": "-Kewa Space Whale Reputation penalty! (Pollutes water)",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "hedge_garden",
+    "name": "Hedge Garden (Decoration)",
+    "cycle": "Pollution: 0 · Build: 3.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Hedge Garden has 2 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Forest",
+        "effect": "+Kewa Space Whale Reputation bonus!",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 2× Decoration buildings",
+        "effect": "+20% Peep Happiness bonus",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "homestead",
+    "name": "Homestead (Accommodation)",
+    "cycle": "Pollution: None · Build: 20.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Homestead has 3 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 2× Homestead",
+        "effect": "+2 Worker / Housing Slots",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 2× House",
+        "effect": "+30% Food Storage capacity",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Solar Panels",
+        "effect": "+20% Peep Happiness bonus",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "house",
+    "name": "House (Accommodation)",
+    "cycle": "Pollution: None · Build: 4.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: House has 2 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 2× House",
+        "effect": "+3 Worker / Housing Slots",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 2× House",
+        "effect": "-30% Food Storage capacity",
+        "type": "penalty"
+      },
+      {
+        "label": "Adjacent to 2× Park Bench",
+        "effect": "+20% Peep Happiness bonus",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "hut",
+    "name": "Hut (Accommodation)",
+    "cycle": "Pollution: None · Build: 4.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Hut has 2 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 2× Potato Patch",
+        "effect": "+20% Peep Happiness bonus",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 2× House",
+        "effect": "+1 Worker / Housing Slots",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 3× Hut",
+        "effect": "-20% Peep Happiness / Food Energy recovery",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "hydroponic_garden",
+    "name": "Hydroponic Garden (Agriculture)",
+    "cycle": "Pollution: None · Build: 20.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Hydroponic Garden has 2 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Homestead",
+        "effect": "+30% Farmhouse Storage capacity",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Solar Panels",
+        "effect": "+20% Production Speed",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "kitchen",
+    "name": "Kitchen (PeepResources)",
+    "cycle": "Pollution: High · Build: 10.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Kitchen has 2 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 2× Compost Heap",
+        "effect": "AddNegativeHappinessBonus ( )",
+        "type": "mixed"
+      },
+      {
+        "label": "Adjacent to 2× Compost Heap",
+        "effect": "+20% Bonus Output per cycle",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 2× Pasture",
+        "effect": "+1 Worker / Housing Slots",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "landscaper",
+    "name": "Landscaper (Terraforming)",
+    "cycle": "Pollution: None · Build: 5.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Landscaper has 2 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Tree Nursery",
+        "effect": "+30% Trash Storage capacity",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Hut",
+        "effect": "+1 Worker / Housing Slots",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Hut",
+        "effect": "AddNegativeHappinessBonus ( )",
+        "type": "mixed"
+      }
+    ]
+  },
+  {
+    "id": "laser_laboratory",
+    "name": "Laser Laboratory (Advanced)",
+    "cycle": "Pollution: High · Build: 45.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Laser Laboratory has 1 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Blast Mine",
+        "effect": "+20% Production Speed",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "metal_smelter",
+    "name": "Metal Smelter (Construction)",
+    "cycle": "Pollution: High · Build: 8.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Metal Smelter has 1 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Ore Smelter",
+        "effect": "+20% Production Speed",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Power Line",
+        "effect": "-20% Output yield penalty",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "mine",
+    "name": "Mine (Construction)",
+    "cycle": "Pollution: Low · Build: 5.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Mine has 1 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Mine",
+        "effect": "+20% Bonus Output per cycle",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Mine",
+        "effect": "+25% Pollution output",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "orchard",
+    "name": "Orchard (Agriculture)",
+    "cycle": "Pollution: None · Build: 10.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Orchard has 1 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 6× Field",
+        "effect": "+20% Bonus Output per cycle",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Bare / Unvegetated tile",
+        "effect": "-20% Production Speed penalty",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "ore_smelter",
+    "name": "Ore Smelter (Construction)",
+    "cycle": "Pollution: Medium · Build: 6.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Ore Smelter has 1 positive adjacency trigger(s) and 2 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Cleaner",
+        "effect": "+25% Pollution output",
+        "type": "penalty"
+      },
+      {
+        "label": "Adjacent to 1× Ore Smelter",
+        "effect": "+20% Production Speed",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Ore Smelter",
+        "effect": "-2 Worker Slots penalty",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "oxygen_generator",
+    "name": "Oxygen Generator (Advanced)",
+    "cycle": "Pollution: None · Build: 0.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Oxygen Generator has 2 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Power buildings",
+        "effect": "+20% Production Speed",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 5× Accommodation buildings",
+        "effect": "+20% Production Speed",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "park_bench",
+    "name": "Park Bench (Decoration)",
+    "cycle": "Pollution: None · Build: 3.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Park Bench has 1 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Fountain",
+        "effect": "+20% Peep Happiness bonus",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Park Bench",
+        "effect": "-20% Peep Happiness / Food Energy recovery",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "pasture",
+    "name": "Pasture (Agriculture)",
+    "cycle": "Pollution: None · Build: 15.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Pasture has 1 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 6× Field",
+        "effect": "+20% Bonus Output per cycle",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Bare / Unvegetated tile",
+        "effect": "-20% Production Speed penalty",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "potato_patch",
+    "name": "Potato Patch (Agriculture)",
+    "cycle": "Pollution: None · Build: 5.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Potato Patch has 2 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Potato Patch",
+        "effect": "+30% Potato Storage capacity",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Water Pump",
+        "effect": "+20% Production Speed",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "reformer",
+    "name": "Reformer (Terraforming)",
+    "cycle": "Pollution: None · Build: 60.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Reformer has 2 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Laser Laboratory",
+        "effect": "+30% Laser Storage capacity",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Battery Plant",
+        "effect": "+30% Battery Storage capacity",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "sawmill",
+    "name": "Sawmill (Construction)",
+    "cycle": "Pollution: Low · Build: 5.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Sawmill has 2 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Burner Generator",
+        "effect": "+20% Production Speed",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Burner Generator",
+        "effect": "-30% Wood Storage capacity",
+        "type": "penalty"
+      },
+      {
+        "label": "Surrounded by 4× Empty / Road tiles",
+        "effect": "-25% Pollution output",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "sludge_dehydrator",
+    "name": "Sludge Dehydrator (Hazardous)",
+    "cycle": "Pollution: High · Build: 20.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Sludge Dehydrator has 1 positive adjacency trigger(s) and 2 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Surrounded by 3× Underwater / River tiles",
+        "effect": "+25% Pollution output",
+        "type": "penalty"
+      },
+      {
+        "label": "Surrounded by 3× Underwater / River tiles",
+        "effect": "-Kewa Space Whale Reputation penalty! (Pollutes water)",
+        "type": "penalty"
+      },
+      {
+        "label": "Adjacent to 1× Fuel Generator",
+        "effect": "+20% Production Speed",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "solar_panels",
+    "name": "Solar Panels (Power)",
+    "cycle": "Pollution: None · Build: 6.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Solar Panels has 1 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Surrounded by 4× Empty / Road tiles",
+        "effect": "+20% Production Speed",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "storage_extension",
+    "name": "Storage Extension (Transport)",
+    "cycle": "Pollution: None · Build: 0.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Storage Extension has 1 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Surrounded by 4× Empty / Road tiles",
+        "effect": "+30% Output Storage capacity",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "storage_shed",
+    "name": "Storage Shed (Transport)",
+    "cycle": "Pollution: None · Build: 6.0s · Max Storage: 60",
+    "summary": "Datamined from official Cargo table: Storage Shed has 1 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Hut",
+        "effect": "+1 Worker / Housing Slots",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "tailor",
+    "name": "Tailor (PeepResources)",
+    "cycle": "Pollution: Medium · Build: 12.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Tailor has 3 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× School",
+        "effect": "+30% Heavy Cloth Storage capacity",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× School",
+        "effect": "+20% Production Speed",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Apartment",
+        "effect": "+1 Worker / Housing Slots",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "toolsmith",
+    "name": "Toolsmith (Construction)",
+    "cycle": "Pollution: Low · Build: 6.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Toolsmith has 1 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Ore Smelter",
+        "effect": "+1 Worker / Housing Slots",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Burner Generator",
+        "effect": "-20% Output yield penalty",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "trawler",
+    "name": "Trawler (Construction)",
+    "cycle": "Pollution: Low · Build: 20.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Trawler has 1 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Biofuel Refinery",
+        "effect": "+20% Peep Happiness bonus",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "tree_nursery",
+    "name": "Tree Nursery (Terraforming)",
+    "cycle": "Pollution: None · Build: 10.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Tree Nursery has 2 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Landscaper",
+        "effect": "+20% Production Speed",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Landscaper",
+        "effect": "-30% Compost Storage capacity",
+        "type": "penalty"
+      },
+      {
+        "label": "Adjacent to 1× Compost Heap",
+        "effect": "+20% Bonus Output per cycle",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "water_pump",
+    "name": "Water Pump (Agriculture)",
+    "cycle": "Pollution: None · Build: 4.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Water Pump has 1 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Surrounded by 3× Underwater / River tiles",
+        "effect": "+30% Water Storage capacity",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Hut",
+        "effect": "-20% Production Speed penalty",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "weaver",
+    "name": "Weaver (PeepResources)",
+    "cycle": "Pollution: Low · Build: 20.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Weaver has 1 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 2× Pasture",
+        "effect": "+20% Bonus Output per cycle",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "wild_flowers",
+    "name": "Wild Flowers (Decoration)",
+    "cycle": "Pollution: None · Build: 3.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Wild Flowers has 2 positive adjacency trigger(s) and 0 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 1× Forest",
+        "effect": "+Kewa Space Whale Reputation bonus!",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 2× Decoration buildings",
+        "effect": "+20% Peep Happiness bonus",
+        "type": "bonus"
+      }
+    ]
+  },
+  {
+    "id": "wind_turbines",
+    "name": "Wind Turbines (Power)",
+    "cycle": "Pollution: None · Build: 0.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Wind Turbines has 1 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Surrounded by 4× Empty / Road tiles",
+        "effect": "+20% Production Speed",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Forest",
+        "effect": "-20% Production Speed penalty",
+        "type": "penalty"
+      }
+    ]
+  },
+  {
+    "id": "woodcutter",
+    "name": "Woodcutter (Construction)",
+    "cycle": "Pollution: None · Build: 5.0s · Max Storage: -1",
+    "summary": "Datamined from official Cargo table: Woodcutter has 1 positive adjacency trigger(s) and 1 placement penalty trigger(s).",
+    "strategy": "Place to trigger green BONUS conditions while avoiding red PENALTY neighbors (especially near water tiles for hazardous factories, which hurt Kewa Reputation!).",
+    "conditions": [
+      {
+        "label": "Adjacent to 5× Forest",
+        "effect": "+30% Wood Storage capacity",
+        "type": "bonus"
+      },
+      {
+        "label": "Adjacent to 1× Woodcutter",
+        "effect": "-20% Production Speed penalty",
+        "type": "penalty"
+      }
+    ]
+  }
+];
 
     const FOODS = [
       { name: "Hot Casserole", category: "Meal (Kitchen -> Cafe)", happiness: 200, exhaustion: 0.75, chain: "Kitchen -> CafeInput" },
