@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name='impact-site-verification' value='67248ade-2256-4eb9-a44d-4c9372adbc06' />
+  <meta name="google-site-verification" content="OGydVdcXVbSynuzT5IWmLOtdpgQUmtskzdu4q6aYauM" />
+  <meta name="google-site-verification" content="mxe1vY_zEngbC7G5D37IckCJL52dWfA5nvSQ2EbOoE0" />
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "yydvdldh0s");
+  </script>
+  <title>Used Cars Simulator Calculator &amp; Interactive Wreck Map — All 26 Cars, Flip Profit &amp; 45 Wreck Coordinates (1.0 Launch)</title>
+  <meta name="description" content="Free interactive Used Cars Simulator 1.0 calculator and wreck spawn map. Calculate exact car flip profit, -10%/+10% negotiation counter-offers, Body Shop (Tinsmith) rust removal fees, search all 26 cars &amp; real-world counterparts, and track all 45 datamined abandoned car wreck coordinates." />
+  <meta name="keywords" content="used cars simulator calculator, used cars simulator car list, used cars simulator abandoned car locations, used cars simulator wreck map, used cars simulator flip profit calculator, used cars simulator real car names, used cars simulator body shop tinsmith rust removal, camborghini lountach, feetari f420, grand boomer price" />
+  <link rel="canonical" href="https://smartcyf.github.io/commercial-promotion/used-cars-simulator/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Used Cars Simulator 1.0 Flip Profit Calculator, 26-Car Price List &amp; 45-Wreck Interactive Map" />
+  <meta property="og:description" content="Calculate exact NPC negotiation counter-offers (-10% buy / +10% sell), Body Shop rust fees, browse all 26 confirmed vehicles with real-world counterparts, and hunt wrecks on the 45-point interactive radar map." />
+  <meta property="og:url" content="https://smartcyf.github.io/commercial-promotion/used-cars-simulator/" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            garage: {
+              950: '#090b10',
+              900: '#11151f',
+              800: '#1a2030',
+              700: '#262f45',
+              amber: '#f59e0b',
+              emerald: '#10b981'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Used Cars Simulator Flip Profit Calculator & Interactive Wreck Map",
+        "url": "https://smartcyf.github.io/commercial-promotion/used-cars-simulator/",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Interactive car flipping profit calculator, negotiation counter-offer solver, 45-point abandoned wreck coordinate radar map, and 26-vehicle directory for Used Cars Simulator 1.0."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How many cars are in Used Cars Simulator 1.0 and what are their real names?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Used Cars Simulator 1.0 features 26 confirmed vehicles (23 cars/vans across Seasons 1-3 plus 3 specialized tow trucks). Famous models include Rada Rocket (Lada Riva), Piat Funto (Fiat Punto), Sportwagen Wolf (VW Golf), Grand Boomer ($15,800 Jeep Scrambler/Wagoneer), Mord Fustang (Ford Mustang), Camborghini Lountach (Lamborghini Countach), Feetari F420 (Ferrari F40), McLorreta 420 Fiver (McLaren), plus Season 3 additions Highway Boss and Mud Bandit."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where is the Body Shop (Tinsmith) and how does rust affect car value?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The Body Shop is labeled as 'Tinsmith' on the map in the southwest quadrant. Spray painting over rust does NOT clear the rust flag. Leaving chassis rust untreated slashes buyer offers by 80% to 90% (a $5,500 car will only receive $400-$700 bids). Strip rust at the Tinsmith or use the Hardware Store Disc Sander (Update 28)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where do abandoned car wrecks spawn in Used Cars Simulator?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "There are 45 fixed wreck spawn containers across the map that refresh roughly once per in-game day. The densest cluster of 20 spawn points runs along the winding uphill road from your starting Shed Garage into the Lost Angeles city ruins."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which vehicles can carry cargo for delivery side quests?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Three utility vehicles support internal cargo loading for Port and Supermarket package delivery side quests (Update 29): D-1CK, Burrito Bison, and Gravel Titan."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <style>
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #090b10; }
+    ::-webkit-scrollbar-thumb { background: #262f45; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #f59e0b; }
+  </style>
+</head>
+<body class="bg-garage-950 text-slate-100 min-h-screen font-sans selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- Top Affiliate & Network Bar -->
+  <div class="bg-gradient-to-r from-amber-950/90 via-garage-900 to-emerald-950/90 border-b border-amber-500/30 px-4 py-2 text-xs">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="px-2 py-0.5 rounded bg-amber-500 text-slate-950 font-bold uppercase tracking-wider text-[10px]">1.0 Full Launch</span>
+        <span class="text-slate-200 font-medium">Used Cars Simulator 1.0 (Season 3 + Smugglers Update) — Get Official Steam Key Deals:</span>
+      </div>
+      <div class="flex items-center gap-3 flex-wrap">
+        <a href="https://www.instant-gaming.com/en/search/?q=Used+Cars+Simulator&igr=gamer-d5194af" target="_blank" rel="noopener sponsored" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold transition shadow-lg shadow-amber-500/20">
+          <span>🚗 Used Cars Simulator (-40% Deal)</span>
+          <span>↗</span>
+        </a>
+        <a href="https://www.instant-gaming.com/en/pc/steam/trending/?igr=gamer-d5194af" target="_blank" rel="noopener sponsored" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-garage-800 hover:bg-garage-700 text-amber-300 border border-amber-500/30 transition">
+          <span>🔥 Trending Steam Sim Keys (Up to -70%)</span>
+        </a>
+        <a href="https://ko-fi.com/sstoolkit" target="_blank" rel="noopener" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-pink-600/20 hover:bg-pink-600/30 text-pink-300 border border-pink-500/30 transition">
+          <span>☕ Support Toolkit ($5)</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="border-b border-slate-800/80 bg-garage-900/80 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-amber-500/20">
+          🔧
+        </div>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <h1 class="text-lg md:text-xl font-extrabold tracking-tight text-white">Used Cars Simulator <span class="text-amber-400">Flip Calculator &amp; Wreck Map</span></h1>
+            <span class="text-[11px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-semibold">v1.0 Season 3 Ready</span>
+          </div>
+          <p class="text-xs text-slate-400">26 Confirmed Vehicles · Exact Negotiation (-10%/+10%) Solver · Tinsmith Rust Calculator · 45 Wreck Coordinates</p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="flex items-center gap-1.5 bg-garage-950 p-1 rounded-xl border border-slate-800">
+        <button onclick="switchTab('calculator')" id="tab-calculator" class="px-3 py-1.5 rounded-lg text-xs font-bold transition bg-amber-500 text-slate-950">
+          💰 Flip Profit Calculator
+        </button>
+        <button onclick="switchTab('map')" id="tab-map" class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-300 hover:text-white">
+          🗺️ 45 Wreck Spawn Map
+        </button>
+        <button onclick="switchTab('cars')" id="tab-cars" class="px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-300 hover:text-white">
+          🚘 All 26 Cars &amp; Real Names
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-6 space-y-8">
+
+    <!-- ==================== TAB 1: FLIP PROFIT & NEGOTIATION CALCULATOR ==================== -->
+    <section id="panel-calculator" class="space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Left Column: Inputs (7 cols) -->
+        <div class="lg:col-span-7 bg-garage-900 border border-slate-800 rounded-2xl p-5 space-y-5 shadow-xl">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <h2 class="text-base font-bold text-white flex items-center gap-2">
+                <span>1. Select Vehicle &amp; Acquisition Route</span>
+              </h2>
+              <p class="text-xs text-slate-400">Choose a vehicle preset or enter the exact NPC asking price after inspection.</p>
+            </div>
+            <button onclick="shareCurrentFlip()" class="px-3 py-1.5 rounded-lg bg-garage-800 hover:bg-garage-700 text-amber-300 border border-amber-500/30 text-xs font-semibold transition">
+              🔗 Copy Share Link
+            </button>
+          </div>
+
+          <!-- Vehicle Select & Acquisition Mode -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1.5">Vehicle Model Preset (26 Confirmed)</label>
+              <select id="carSelect" onchange="onCarPresetChange()" class="w-full bg-garage-950 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-white focus:border-amber-500 focus:outline-none">
+              </select>
+              <p id="carRealNameHint" class="text-[11px] text-amber-400/90 mt-1 font-medium"></p>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1.5">Acquisition Source</label>
+              <select id="sourceSelect" onchange="recalculateFlip()" class="w-full bg-garage-950 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-white focus:border-amber-500 focus:outline-none">
+                <option value="seller">🤝 Honest Trade (NPC Seller / Car Auction)</option>
+                <option value="wreck">🏚️ Abandoned Wreck (Free Claim in Lost Angeles)</option>
+                <option value="stolen">🥷 Stolen Car (Lockpick / Hotwire + Plate Swap)</option>
+                <option value="container">🚢 Port Container Gamble (Update 26)</option>
+              </select>
+              <p id="sourceHint" class="text-[11px] text-slate-400 mt-1">Inspect all parts first to drop seller's overhead asking price.</p>
+            </div>
+          </div>
+
+          <!-- Price & Condition Inputs -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Seller Asking / Container ($)</label>
+              <input type="number" id="askingPriceInput" value="9500" min="0" step="100" oninput="recalculateFlip()" class="w-full bg-garage-950 border border-slate-700 rounded-xl px-3 py-2 text-sm font-mono text-white focus:border-amber-500 focus:outline-none" />
+              <span class="text-[10px] text-slate-400">Price above NPC head after inspection</span>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Full Restored Market Value ($)</label>
+              <input type="number" id="marketValueInput" value="15800" min="500" step="100" oninput="recalculateFlip()" class="w-full bg-garage-950 border border-slate-700 rounded-xl px-3 py-2 text-sm font-mono text-emerald-300 focus:border-amber-500 focus:outline-none" />
+              <span class="text-[10px] text-slate-400">100% showroom condition value</span>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Missing Parts Cost (UsedBay $)</label>
+              <input type="number" id="partsCostInput" value="1400" min="0" step="50" oninput="recalculateFlip()" class="w-full bg-garage-950 border border-slate-700 rounded-xl px-3 py-2 text-sm font-mono text-white focus:border-amber-500 focus:outline-none" />
+              <span class="text-[10px] text-slate-400">Doors, bumpers, lights, windows, rims</span>
+            </div>
+          </div>
+
+          <!-- Skills & Restoration Options -->
+          <div class="border-t border-slate-800 pt-4 space-y-3">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">2. Negotiation Skills, Rust &amp; Upgrades</h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <label class="flex items-start gap-2.5 p-3 rounded-xl bg-garage-950/80 border border-slate-800 cursor-pointer hover:border-amber-500/40">
+                <input type="checkbox" id="skillBuy10" checked onchange="recalculateFlip()" class="mt-0.5 accent-amber-500" />
+                <div class="text-xs">
+                  <div class="font-bold text-white">Negotiation Skill: Buy 10% Lower</div>
+                  <div class="text-slate-400 text-[11px]">First 4 skill points priority — unlocks -10% counter-offer</div>
+                </div>
+              </label>
+
+              <label class="flex items-start gap-2.5 p-3 rounded-xl bg-garage-950/80 border border-slate-800 cursor-pointer hover:border-amber-500/40">
+                <input type="checkbox" id="skillSell10" checked onchange="recalculateFlip()" class="mt-0.5 accent-amber-500" />
+                <div class="text-xs">
+                  <div class="font-bold text-white">Negotiation Skill: Sell 10% Higher (×1.10)</div>
+                  <div class="text-slate-400 text-[11px]">Multiply buyer's top offer by 1.10 at point of delivery</div>
+                </div>
+              </label>
+            </div>
+
+            <!-- Rust & Engine Row -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Chassis Rust Status</label>
+                <select id="rustStatusSelect" onchange="recalculateFlip()" class="w-full bg-garage-950 border border-slate-700 rounded-xl px-2.5 py-2 text-xs text-white">
+                  <option value="none">✨ Clean / No Chassis Rust ($0)</option>
+                  <option value="tinsmith">🏭 Strip at Body Shop "Tinsmith" (~12% fee)</option>
+                  <option value="sander">💿 Manual Disc Sander (Hardware Store ~$250)</option>
+                  <option value="untreated">⚠️ Leave Rust Untreated (-85% Buyer Penalty!)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Engine &amp; Nitro (NOS) Boost</label>
+                <select id="engineNitroSelect" onchange="recalculateFlip()" class="w-full bg-garage-950 border border-slate-700 rounded-xl px-2.5 py-2 text-xs text-white">
+                  <option value="stock">Stock Working Engine ($0)</option>
+                  <option value="wreck_engine">Buy Replacement Engine ($1,800)</option>
+                  <option value="scavenged_nos">+2 Scavenged Lost Angeles NOS (+8% Value)</option>
+                  <option value="max_nos">+6 Max Nitro &amp; Rally Upgrade (+20% Value)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">License Plate / Dealership</label>
+                <select id="plateSelect" onchange="recalculateFlip()" class="w-full bg-garage-950 border border-slate-700 rounded-xl px-2.5 py-2 text-xs text-white">
+                  <option value="legal">✅ Legal Plate (100% Offer Value)</option>
+                  <option value="almost_legal">🪪 Swap to "Almost Legal" Plate ($600)</option>
+                  <option value="stolen_plate">🚨 Keep Stolen Plate (-45% Buyer Penalty!)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Live Profit & Negotiation Readout (5 cols) -->
+        <div class="lg:col-span-5 bg-gradient-to-b from-garage-900 to-garage-950 border border-amber-500/30 rounded-2xl p-5 flex flex-col justify-between space-y-5 shadow-2xl">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-amber-400">Live Flip Profit Breakdown</span>
+              <span id="roiBadge" class="px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">+0% ROI</span>
+            </div>
+
+            <!-- Big Net Profit Card -->
+            <div class="bg-garage-950 border border-slate-800 rounded-2xl p-4 text-center">
+              <div class="text-xs text-slate-400 mb-1">Estimated Net Flip Profit</div>
+              <div id="netProfitDisplay" class="text-3xl md:text-4xl font-black text-emerald-400 font-mono">$0</div>
+              <div id="profitWarning" class="text-xs text-amber-300 mt-1.5 hidden"></div>
+            </div>
+
+            <!-- Exact Counter-Offer Cheat Sheet -->
+            <div class="grid grid-cols-2 gap-3">
+              <div class="bg-garage-950/90 border border-slate-800 rounded-xl p-3">
+                <div class="text-[11px] text-slate-400">Target Buy Offer (-10% Skill)</div>
+                <div id="targetBuyDisplay" class="text-lg font-extrabold text-white font-mono mt-0.5">$0</div>
+                <div class="text-[10px] text-slate-500 mt-0.5">Type this after inspecting all parts</div>
+              </div>
+              <div class="bg-garage-950/90 border border-emerald-500/30 rounded-xl p-3">
+                <div class="text-[11px] text-emerald-300">Final Sell Counter (Offer × 1.10)</div>
+                <div id="targetSellDisplay" class="text-lg font-extrabold text-emerald-400 font-mono mt-0.5">$0</div>
+                <div class="text-[10px] text-slate-400 mt-0.5">Wait 1-2 days for top bid, then ×1.1</div>
+              </div>
+            </div>
+
+            <!-- Itemized Cost Ledger -->
+            <div class="bg-garage-950/60 border border-slate-800/80 rounded-xl p-3.5 space-y-2 text-xs">
+              <div class="flex justify-between text-slate-300">
+                <span>Vehicle Purchase / Claim Cost:</span>
+                <span id="ledgerBuy" class="font-mono font-semibold">$0</span>
+              </div>
+              <div class="flex justify-between text-slate-300">
+                <span>UsedBay Parts + Wash &amp; Paint ($250):</span>
+                <span id="ledgerParts" class="font-mono font-semibold">$0</span>
+              </div>
+              <div class="flex justify-between text-slate-300">
+                <span>Tinsmith Rust / Engine / Plate Fee:</span>
+                <span id="ledgerExtras" class="font-mono font-semibold">$0</span>
+              </div>
+              <div class="border-t border-slate-800 pt-2 flex justify-between font-bold text-white">
+                <span>Total Capital Invested:</span>
+                <span id="ledgerTotalCost" class="font-mono text-amber-300">$0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progression Milestones -->
+          <div class="bg-amber-500/10 border border-amber-500/25 rounded-xl p-3.5 text-xs space-y-1.5">
+            <div class="font-bold text-amber-300 flex items-center justify-between">
+              <span>🏆 Wealth &amp; Progression Calculator</span>
+              <span id="flipsToNextTier" class="text-white font-mono">3 Flips</span>
+            </div>
+            <p id="milestoneText" class="text-slate-300 text-[11px] leading-relaxed">
+              At this profit rate, you need <strong>3 flips</strong> to step up to the next vehicle bracket, and <strong>25 flips</strong> to buy the $300,000 Truck Norris heavy wrecker.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: 45 ABANDONED WRECK SPAWN RADAR MAP ==================== -->
+    <section id="panel-map" class="space-y-6 hidden">
+      <div class="bg-garage-900 border border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <div>
+            <h2 class="text-base md:text-lg font-bold text-white flex items-center gap-2">
+              <span>🗺️ Interactive 45 Abandoned Wreck Coordinate Radar Map</span>
+              <span class="text-xs px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Datamined Level Assets (#0 – #44)</span>
+            </h2>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Wrecks respawn roughly once per in-game day. Click any pin on the radar map to inspect exact <code class="text-amber-300">(X, Y, Z)</code> coordinates and mark containers you've already checked today!
+            </p>
+          </div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <select id="zoneFilter" onchange="renderWreckMap()" class="bg-garage-950 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-white">
+              <option value="all">All 45 Spawn Containers</option>
+              <option value="Lost Angeles">🔥 Lost Angeles &amp; Uphill Route (20 Spawns)</option>
+              <option value="Desert">🏜️ Desert Basin &amp; Fringe (6 Spawns)</option>
+              <option value="Central">🏠 Starting Shed &amp; Central Valley (7 Spawns)</option>
+              <option value="Perimeter">⛰️ North / East / West Perimeter (12 Spawns)</option>
+            </select>
+            <button onclick="resetCheckedWrecks()" class="px-3 py-1.5 rounded-xl bg-garage-800 hover:bg-garage-700 text-slate-200 border border-slate-700 text-xs font-semibold transition">
+              🔄 New In-Game Day (Reset Checked)
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- 2D Interactive SVG Map (7 cols) -->
+          <div class="lg:col-span-7 bg-garage-950 border border-slate-800 rounded-2xl p-3 relative">
+            <div class="flex items-center justify-between text-[11px] text-slate-400 mb-2 px-1">
+              <span>West (X: -950) → East (X: +1350)</span>
+              <span id="checkedCounter" class="text-emerald-400 font-bold">0 / 45 Checked Today</span>
+            </div>
+            <div class="w-full aspect-[4/3] bg-[#070a0f] rounded-xl border border-slate-800/90 overflow-hidden relative">
+              <svg id="wreckRadarSvg" viewBox="0 0 800 600" class="w-full h-full cursor-crosshair select-none"></svg>
+            </div>
+            <div class="flex flex-wrap items-center justify-between gap-2 mt-2.5 px-1 text-[11px] text-slate-400">
+              <div class="flex items-center gap-3 flex-wrap">
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> Lost Angeles Cluster (20)</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400 inline-block"></span> Central / Shed (7)</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-yellow-300 inline-block"></span> Desert (6)</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-purple-400 inline-block"></span> Perimeter (12)</span>
+                <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Checked Today</span>
+              </div>
+              <span>💡 Tip: Press <strong>F</strong> at wreck to put green icon on map</span>
+            </div>
+          </div>
+
+          <!-- Selected Pin Inspector + Scrollable Coordinate List (5 cols) -->
+          <div class="lg:col-span-5 space-y-4">
+            <div id="selectedWreckCard" class="bg-garage-950 border border-amber-500/40 rounded-xl p-4 space-y-2">
+              <div class="flex items-center justify-between">
+                <span id="selWreckTitle" class="text-sm font-extrabold text-amber-400">Container #0 — Lost Angeles Approach</span>
+                <button id="selWreckToggleBtn" onclick="toggleSelectedWreckChecked()" class="px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 text-xs font-bold transition">
+                  ✓ Mark Checked
+                </button>
+              </div>
+              <div id="selWreckCoords" class="font-mono text-xs text-slate-200 bg-garage-900 px-3 py-1.5 rounded-lg border border-slate-800">
+                X: -376.82 | Y (Elev): 145.07 | Z: 338.33
+              </div>
+              <p id="selWreckNotes" class="text-xs text-slate-400">
+                Prime uphill route from your starter shed toward Lost Angeles ruins. High chance of attached Nitro (NOS) bottles and mid-tier hulls like Grand Boomer or Burrito Bison.
+              </p>
+            </div>
+
+            <div class="bg-garage-950 border border-slate-800 rounded-xl overflow-hidden">
+              <div class="px-3.5 py-2.5 bg-garage-900 border-b border-slate-800 text-xs font-bold text-slate-300 flex justify-between">
+                <span>Container ID &amp; Area</span>
+                <span>Coordinates (X, Y, Z)</span>
+              </div>
+              <div id="wreckTableBody" class="max-h-[340px] overflow-y-auto divide-y divide-slate-800/60 text-xs">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: ALL 26 CONFIRMED VEHICLES & REAL COUNTERPARTS ==================== -->
+    <section id="panel-cars" class="space-y-6 hidden">
+      <div class="bg-garage-900 border border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <div>
+            <h2 class="text-base md:text-lg font-bold text-white">🚘 Complete Used Cars Simulator 1.0 Vehicle Database (26 Models)</h2>
+            <p class="text-xs text-slate-400">Includes real-world car inspirations, estimated restored value tiers, cargo delivery eligibility, and Steam achievement unlock rates.</p>
+          </div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <input type="text" id="carSearchInput" oninput="renderCarDirectory()" placeholder="Search car or real name (e.g. Countach, F40, Cargo)..." class="bg-garage-950 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-white w-64 focus:border-amber-500 focus:outline-none" />
+            <select id="carClassFilter" onchange="renderCarDirectory()" class="bg-garage-950 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-white">
+              <option value="all">All 26 Vehicles</option>
+              <option value="Starter">Starter / Budget Compacts</option>
+              <option value="Mid">Mid-Tier / Muscle / Rally</option>
+              <option value="Exotic">Supercars &amp; High-End Exotics</option>
+              <option value="Cargo">📦 Package Delivery Cargo Vehicles (3)</option>
+              <option value="Tow">🪝 Heavy Tow Trucks (3)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="carGridContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        </div>
+      </div>
+    </section>
+
+    <!-- Essential Mechanics & Pro Flipping Cheat Sheet (SEO Rich Section) -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="bg-garage-900/90 border border-slate-800 rounded-2xl p-5 space-y-2">
+        <div class="text-amber-400 font-bold text-sm">🛠️ Why "Tinsmith" Rust Removal Is Mandatory</div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          On the in-game map, the <strong>Body Shop</strong> is labeled as <strong>"Tinsmith"</strong> in the southwest quadrant. Spray painting over a rusty wreck does <em>not</em> remove the rust status! Leaving chassis rust untreated causes buyers to slash their bids by <strong>80% to 90%</strong> (a $5,500 car will only get $400–$700 offers). Either pay the Tinsmith percentage fee or use the <strong>Disc Sander</strong> from the Hardware Store (added in Update 28).
+        </p>
+      </div>
+
+      <div class="bg-garage-900/90 border border-slate-800 rounded-2xl p-5 space-y-2">
+        <div class="text-emerald-400 font-bold text-sm">📈 The -10% / +10% Negotiation Formula</div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Spend your <strong>first 4 Skill Points</strong> in the Negotiation tree to unlock <strong>10% Lower Purchase Price</strong> and <strong>10% Higher Sale Price</strong>. Always inspect every damaged part on a seller's car first to watch the asking price above their head drop, then offer 10% below that number. When selling, sleep in your shed until a high offer arrives, tow the car to the buyer, and multiply their offer by <strong>1.10</strong>!
+        </p>
+      </div>
+
+      <div class="bg-garage-900/90 border border-slate-800 rounded-2xl p-5 space-y-2">
+        <div class="text-cyan-400 font-bold text-sm">📦 Cargo Delivery &amp; Cross-Engine Swaps</div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Only 3 vehicles support internal package delivery side quests from the Port and Supermarket (Update 29): <strong>D-1CK</strong>, <strong>Burrito Bison</strong>, and <strong>Gravel Titan</strong>. Furthermore, engine mounts are unrestricted (Update 11) — you can pull a supercar motor out of a <strong>Feetari F420</strong> and drop it straight into a starter <strong>Piat Funto</strong>!
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer with Matrix Cross-Links -->
+  <footer class="border-t border-slate-800/80 bg-garage-900/60 mt-12 py-8 px-4 text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <div class="font-bold text-slate-200">Used Cars Simulator 1.0 Flip Calculator, Car List &amp; 45-Wreck Radar Map</div>
+        <p class="text-[11px] text-slate-500 mt-0.5">Community toolkit built from verified 1.0 release data, patch notes (#1–#29 &amp; Season 3), and datamined level coordinates.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-4 text-xs">
+        <a href="https://smartcyf.github.io/commercial-promotion/" class="text-amber-400 hover:underline font-medium">🐋 Beyond These Stars Calculator</a>
+        <a href="https://smartcyf.github.io/commercial-promotion/neon-abyss-2/" class="text-cyan-400 hover:underline font-medium">⚡ Neon Abyss 2 Synergy Planner</a>
+        <a href="https://ko-fi.com/sstoolkit" target="_blank" rel="noopener" class="text-pink-400 hover:underline font-medium">☕ Support on Ko-fi</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ==================== 26 CONFIRMED VEHICLES DATABASE ====================
+    const VEHICLES = [
+      { id: "rada_rocket", name: "Rada Rocket", real: "Lada Riva / VAZ-2105", tier: "Starter", classLabel: "Classic Compact Sedan", ask: 1800, market: 3600, parts: 450, cargo: false, tow: false, wreck: true, ach: "62.7%", notes: "Most common starter car & Lost Angeles wreck spawn. Great first 3 flips." },
+      { id: "piat_funto", name: "Piat Funto", real: "Fiat Punto (Mk1/Mk2)", tier: "Starter", classLabel: "Compact Hatchback", ask: 2200, market: 4400, parts: 500, cargo: false, tow: false, wreck: true, ach: "44.5%", notes: "Entry-level hatchback; famous for accepting Feetari F420 supercar engine swaps." },
+      { id: "tiny_terror", name: "Tiny Terror", real: "Smart Fortwo / Classic Mini Peel", tier: "Starter", classLabel: "Micro / Subcompact", ask: 2600, market: 5200, parts: 550, cargo: false, tow: false, wreck: false, ach: "16.1%", notes: "Added in Update #17. Ultra-compact micro runabout with cheap part replacements." },
+      { id: "koyota_bueno", name: "Koyota Bueno", real: "Toyota Corolla AE86 / Levin", tier: "Starter", classLabel: "Tuner / Import Compact", ask: 3800, market: 7200, parts: 750, cargo: false, tow: false, wreck: false, ach: "20.5%", notes: "Reliable budget Japanese platform suited for early-to-mid game flipping." },
+      { id: "sportwagen_wolf", name: "Sportwagen Wolf", real: "Volkswagen Golf GTI (Mk2/Mk3)", tier: "Mid", classLabel: "Sports Coupe / Hatch", ask: 4600, market: 8800, parts: 900, cargo: false, tow: false, wreck: true, ach: "48.2%", notes: "German-styled hot hatch with high buyer demand and balanced handling." },
+      { id: "d1ck", name: "D-1CK", real: "Dodge Ram Van / Ford Econoline", tier: "Mid", classLabel: "Cargo Van / Utility", ask: 5800, market: 10800, parts: 1100, cargo: true, tow: false, wreck: true, ach: "28.4%", notes: "Supports Port & Supermarket package delivery side quests (Update 29) + Lost Angeles quests." },
+      { id: "burrito_bison", name: "Burrito Bison", real: "GMC Vandura (A-Team Van) / Chevy Express", tier: "Mid", classLabel: "Heavy Cargo Van", ask: 7500, market: 13800, parts: 1250, cargo: true, tow: false, wreck: true, ach: "12.7%", notes: "Added in Update #18 (Season 2). Verified cargo hauler for package delivery side quests." },
+      { id: "grand_boomer", name: "Grand Boomer", real: "1981–1986 Jeep Scrambler CJ-8 / Land Rover", tier: "Mid", classLabel: "Off-Road Cruiser (3.5L 450HP)", ask: 9200, market: 15800, parts: 1400, cargo: false, tow: false, wreck: true, ach: "15.4%", notes: "Documented wiki baseline value: $15,800 (1,500 kg, 3.5L, 450 HP). Formerly 'Rower Hop'." },
+      { id: "montiac_moonfly", name: "Montiac Moonfly", real: "Pontiac Firebird Trans Am", tier: "Mid", classLabel: "Classic American Muscle", ask: 10500, market: 18500, parts: 1600, cargo: false, tow: false, wreck: false, ach: "23.8%", notes: "Classic muscle coupe with high drift score multiplier and strong resale markup." },
+      { id: "mord_fustang", name: "Mord Fustang", real: "Ford Mustang GT / Fastback", tier: "Mid", classLabel: "Modern Muscle", ask: 12800, market: 22500, parts: 1850, cargo: false, tow: false, wreck: false, ach: "23.0%", notes: "RWD muscle car built for Time Attack drift leaderboards and mid-game high-margin flips." },
+      { id: "dancia_lelta", name: "Dancia Lelta Integra", real: "Lancia Delta HF Integrale Evoluzione", tier: "Mid", classLabel: "Rally Homologation Hatch", ask: 14500, market: 25500, parts: 2100, cargo: false, tow: false, wreck: false, ach: "15.4%", notes: "Iconic rally legend; pair with Rally Shop suspension & roll cage (Update 27)." },
+      { id: "misslebishi_evil", name: "MissleBishi Evil", real: "Mitsubishi Lancer Evolution VIII / IX", tier: "Mid", classLabel: "Sport / Rally Sedan", ask: 16800, market: 29500, parts: 2300, cargo: false, tow: false, wreck: false, ach: "20.0%", notes: "Added in Update #13. Street rally tuner with rapid acceleration and high buyer bids." },
+      { id: "cash_dillac", name: "Cash Dillac", real: "Cadillac Eldorado / Fleetwood Brougham", tier: "Mid", classLabel: "Classic Luxury Cruiser", ask: 18500, market: 32500, parts: 2500, cargo: false, tow: false, wreck: false, ach: "12.8%", notes: "Added in Update #15. Full-size luxury cruiser; chrome visuals upgraded in Update 24." },
+      { id: "beamer_fury", name: "Beamer Fury", real: "BMW M3 (E46 / E36)", tier: "Mid", classLabel: "Performance Sports Sedan", ask: 21000, market: 36800, parts: 2800, cargo: false, tow: false, wreck: false, ach: "11.5%", notes: "Added in Update #21. High-demand German performance coupe for Dealership lot sales." },
+      { id: "gravel_titan", name: "Gravel Titan", real: "Ford F-150 Raptor / Ram TRX", tier: "Mid", classLabel: "Heavy Off-Road Pickup", ask: 24000, market: 42000, parts: 3100, cargo: true, tow: false, wreck: false, ach: "8.4%", notes: "Added in Update #24; enabled for internal cargo package delivery jobs in Update #29." },
+      { id: "mud_bandit", name: "Mud Bandit", real: "Suzuki Jimny / Baja Trail Buggy", tier: "Mid", classLabel: "1.0 Off-Road Trail Vehicle", ask: 26000, market: 45000, parts: 3200, cargo: false, tow: false, wreck: false, ach: "0.2%", notes: "Brand new in 1.0 Full Version Launch (Season 3 / Smugglers update)." },
+      { id: "highway_boss", name: "Highway Boss", real: "Dodge Charger Hellcat / Interceptor", tier: "Exotic", classLabel: "1.0 High-Speed Muscle Sedan", ask: 34000, market: 58000, parts: 4200, cargo: false, tow: false, wreck: false, ach: "0.1%", notes: "Brand new in 1.0 Full Version Launch (Season 3). High top speed for police helicopter evasion." },
+      { id: "inferno_hawk", name: "Inferno Hawk", real: "Dodge Challenger SRT Demon / Pontiac Trans Am", tier: "Exotic", classLabel: "Modern Supercar / Muscle", ask: 38000, market: 65000, parts: 4600, cargo: false, tow: false, wreck: false, ach: "8.0%", notes: "Added in Update #23. High-power performance exotic with massive 100% perfection flip payout." },
+      { id: "mclorreta_420", name: "McLorreta 420 Fiver", real: "McLaren 720S / McLaren F1", tier: "Exotic", classLabel: "Supercar / Exotic", ask: 48000, market: 82000, parts: 5800, cargo: false, tow: false, wreck: false, ach: "18.0%", notes: "Community traders report $31,000+ net profit per flip when combining -10%/+10% negotiation skills." },
+      { id: "camborghini_lountach", name: "Camborghini Lountach", real: "Lamborghini Countach LP5000", tier: "Exotic", classLabel: "Supercar / Wedge Exotic", ask: 55000, market: 95000, parts: 6500, cargo: false, tow: false, wreck: false, ach: "14.6%", notes: "Added in Update #9 (community vote winner). Poster supercar with huge Dealership margins." },
+      { id: "feetari_f420", name: "Feetari F420", real: "Ferrari F40", tier: "Exotic", classLabel: "Flagship Supercar / Exotic", ask: 64000, market: 112000, parts: 7400, cargo: false, tow: false, wreck: false, ach: "13.9%", notes: "Added in Update #11. Features swappable twin-turbo V8 that fits even in a Piat Funto!" },
+      { id: "smuggler_special", name: "Smuggler's Unassembled Kit Car", real: "Season 3 Black Market Import", tier: "Exotic", classLabel: "Smuggler's Special (1.0)", ask: 29000, market: 62000, parts: 4800, cargo: false, tow: false, wreck: false, ach: "0.1%", notes: "1.0 Season 3 Smuggler's Boss vehicle ('Some assembly required. No questions asked')." },
+      { id: "starter_tow", name: "Starter Flatbed Tow Truck", real: "Classic Single-Car Rollback Wrecker", tier: "Tow", classLabel: "Utility Recovery Truck", ask: 15000, market: 15000, parts: 0, cargo: false, tow: true, wreck: false, ach: "88.7%", notes: "Available from early game; supports Winch upgrade (Update 13) to pull engine-less wrecks." },
+      { id: "towminator", name: "Towminator", real: "Custom Armored Heavy Wrecker", tier: "Tow", classLabel: "Heavy Recovery Tow Truck", ask: 95000, market: 95000, parts: 0, cargo: false, tow: true, wreck: false, ach: "8.7%", notes: "Added in Update #14 at Tow Truck Shop near the abandoned ski jump." },
+      { id: "loadasaurus_rex", name: "Loadasaurus Rex", real: "Multi-Car Carrier Hauler", tier: "Tow", classLabel: "Multi-Vehicle Carrier Rig", ask: 180000, market: 180000, parts: 0, cargo: false, tow: true, wreck: false, ach: "11.6%", notes: "Added in Update #14. Hauls multiple wrecked cars simultaneously from Lost Angeles." },
+      { id: "truck_norris", name: "Truck Norris", real: "Heavy Commercial Recovery Rig", tier: "Tow", classLabel: "Flagship Multi-Car Tow Truck", ask: 300000, market: 300000, parts: 0, cargo: false, tow: true, wreck: false, ach: "5.6%", notes: "Confirmed price: $300,000 at Tow Truck Shop. Maximum towing capacity & torque." }
+    ];
+
+    // ==================== 45 DATAMINED WRECK COORDINATES (#0 - #44) ====================
+    const WRECK_COORDS = [
+      { id: 0, x: -376.82, y: 145.07, z: 338.33, zone: "Lost Angeles", area: "Lost Angeles approach (winding uphill road)" },
+      { id: 1, x: 1328.46, y: 13.22, z: -747.75, zone: "Perimeter", area: "Outer map perimeter (Far Southeast)" },
+      { id: 2, x: 487.26, y: 16.42, z: -839.54, zone: "Desert", area: "Lowlands / southern roadside" },
+      { id: 3, x: -15.02, y: 6.57, z: -858.35, zone: "Desert", area: "Desert fringe (South)" },
+      { id: 4, x: -127.85, y: 7.65, z: -895.85, zone: "Desert", area: "Desert flats (Deep South)" },
+      { id: 5, x: -906.22, y: 7.05, z: -301.09, zone: "Perimeter", area: "Western lowlands" },
+      { id: 6, x: -594.76, y: 85.32, z: -564.32, zone: "Desert", area: "Elevated hill path (Southwest)" },
+      { id: 7, x: -103.93, y: 83.71, z: -154.86, zone: "Central", area: "Central valley (Near Starter Shed)" },
+      { id: 8, x: -474.39, y: 59.15, z: 11.09, zone: "Central", area: "Valley transit route" },
+      { id: 9, x: -435.60, y: 134.89, z: 308.95, zone: "Lost Angeles", area: "Mountain ascent to Lost Angeles" },
+      { id: 10, x: 58.67, y: 69.92, z: 170.09, zone: "Central", area: "Central roadside" },
+      { id: 11, x: 597.49, y: 44.06, z: 139.21, zone: "Central", area: "Eastern fields" },
+      { id: 12, x: 819.99, y: 149.25, z: 118.91, zone: "Perimeter", area: "Eastern ridge" },
+      { id: 13, x: 713.58, y: 48.81, z: 326.04, zone: "Perimeter", area: "East pass" },
+      { id: 14, x: -161.03, y: 110.27, z: 636.47, zone: "Lost Angeles", area: "Lost Angeles foothills" },
+      { id: 15, x: -349.85, y: 106.84, z: 166.70, zone: "Central", area: "Mid-elevation junction (Shed to LA road)" },
+      { id: 16, x: 453.49, y: 72.91, z: 704.02, zone: "Perimeter", area: "Northeast hills" },
+      { id: 17, x: -5.02, y: 80.44, z: 669.96, zone: "Lost Angeles", area: "Mountain passage" },
+      { id: 18, x: -78.08, y: 102.29, z: 586.49, zone: "Lost Angeles", area: "Lost Angeles outskirts" },
+      { id: 19, x: -369.50, y: 152.80, z: 568.59, zone: "Lost Angeles", area: "Lost Angeles main entry" },
+      { id: 20, x: -431.24, y: 158.71, z: 631.92, zone: "Lost Angeles", area: "Lost Angeles district" },
+      { id: 21, x: -544.60, y: 158.76, z: 566.45, zone: "Lost Angeles", area: "Lost Angeles city ruins" },
+      { id: 22, x: -585.91, y: 159.26, z: 614.02, zone: "Lost Angeles", area: "Lost Angeles street ruins" },
+      { id: 23, x: -585.76, y: 158.66, z: 667.46, zone: "Lost Angeles", area: "Lost Angeles core (High NOS chance)" },
+      { id: 24, x: -570.38, y: 159.49, z: 738.28, zone: "Lost Angeles", area: "Lost Angeles core" },
+      { id: 25, x: -582.77, y: 164.02, z: 848.98, zone: "Lost Angeles", area: "Lost Angeles upper perimeter" },
+      { id: 26, x: -759.24, y: 124.10, z: 545.54, zone: "Lost Angeles", area: "Western slope below Lost Angeles" },
+      { id: 27, x: -812.11, y: 106.39, z: 898.15, zone: "Lost Angeles", area: "Northwest valley" },
+      { id: 28, x: -659.29, y: 59.23, z: 1177.10, zone: "Lost Angeles", area: "North sector edge (Pair #1)" },
+      { id: 29, x: -654.75, y: 59.20, z: 1179.36, zone: "Lost Angeles", area: "North sector edge (Pair #2)" },
+      { id: 30, x: -583.23, y: 155.96, z: 976.95, zone: "Lost Angeles", area: "Lost Angeles northern pass" },
+      { id: 31, x: -337.99, y: 154.29, z: 666.47, zone: "Lost Angeles", area: "Lost Angeles east sector" },
+      { id: 32, x: -423.89, y: 153.72, z: 447.92, zone: "Lost Angeles", area: "Lost Angeles south rim" },
+      { id: 33, x: -344.99, y: 68.16, z: -571.23, zone: "Desert", area: "Southwest plains (Near Tinsmith Body Shop)" },
+      { id: 34, x: 157.38, y: 49.22, z: -583.96, zone: "Central", area: "South transit line" },
+      { id: 35, x: -261.87, y: 133.68, z: 298.77, zone: "Lost Angeles", area: "Hill climb to Lost Angeles" },
+      { id: 36, x: -336.56, y: 62.24, z: -751.50, zone: "Desert", area: "South valley" },
+      { id: 37, x: -924.94, y: 10.37, z: -547.47, zone: "Perimeter", area: "Far west low plains" },
+      { id: 38, x: -536.74, y: 61.51, z: -836.03, zone: "Perimeter", area: "Southwest boundary" },
+      { id: 39, x: 1027.99, y: 44.07, z: -544.58, zone: "Perimeter", area: "Southeast border" },
+      { id: 40, x: 1116.76, y: 68.39, z: -443.42, zone: "Perimeter", area: "Southeast hill track" },
+      { id: 41, x: 608.48, y: 122.54, z: 1372.98, zone: "Perimeter", area: "Far northeast perimeter" },
+      { id: 42, x: 737.67, y: 140.21, z: 1505.03, zone: "Perimeter", area: "Far northeast highlands" },
+      { id: 43, x: 158.16, y: 69.13, z: 1433.17, zone: "Perimeter", area: "North perimeter" },
+      { id: 44, x: -537.86, y: 27.50, z: 1839.70, zone: "Central", area: "Far north boundary" }
+    ];
+
+    let selectedWreckId = 0;
+    let checkedWrecks = new Set(JSON.parse(localStorage.getItem("ucs_checked_wrecks") || "[]"));
+
+    function initApp() {
+      const sel = document.getElementById("carSelect");
+      sel.innerHTML = VEHICLES.map(v =>
+        `<option value="${v.id}">${v.name} (${v.real}) — ~$${v.market.toLocaleString()}</option>`
+      ).join("");
+      sel.value = "grand_boomer";
+
+      // Check URL params
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("car") && VEHICLES.some(v => v.id === params.get("car"))) {
+        sel.value = params.get("car");
+      }
+      onCarPresetChange();
+
+      if (params.get("ask")) document.getElementById("askingPriceInput").value = params.get("ask");
+      if (params.get("market")) document.getElementById("marketValueInput").value = params.get("market");
+      if (params.get("parts")) document.getElementById("partsCostInput").value = params.get("parts");
+      if (params.get("source")) document.getElementById("sourceSelect").value = params.get("source");
+      if (params.get("tab")) switchTab(params.get("tab"));
+
+      recalculateFlip();
+      renderWreckMap();
+      renderCarDirectory();
+    }
+
+    function switchTab(tab) {
+      ["calculator", "map", "cars"].forEach(t => {
+        const panel = document.getElementById(`panel-${t}`);
+        const btn = document.getElementById(`tab-${t}`);
+        if (t === tab) {
+          panel.classList.remove("hidden");
+          btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition bg-amber-500 text-slate-950";
+        } else {
+          panel.classList.add("hidden");
+          btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition text-slate-300 hover:text-white";
+        }
+      });
+    }
+
+    function onCarPresetChange() {
+      const id = document.getElementById("carSelect").value;
+      const car = VEHICLES.find(v => v.id === id) || VEHICLES[0];
+      document.getElementById("askingPriceInput").value = car.ask;
+      document.getElementById("marketValueInput").value = car.market;
+      document.getElementById("partsCostInput").value = car.parts;
+      document.getElementById("carRealNameHint").textContent =
+        `Real-World Counterpart: ${car.real} · ${car.classLabel}${car.cargo ? " · 📦 Package Delivery Eligible" : ""}`;
+      recalculateFlip();
+    }
+
+    function recalculateFlip() {
+      const source = document.getElementById("sourceSelect").value;
+      const rawAsk = Math.max(0, Number(document.getElementById("askingPriceInput").value) || 0);
+      const baseMarket = Math.max(100, Number(document.getElementById("marketValueInput").value) || 0);
+      const partsCost = Math.max(0, Number(document.getElementById("partsCostInput").value) || 0);
+      const buy10 = document.getElementById("skillBuy10").checked;
+      const sell10 = document.getElementById("skillSell10").checked;
+      const rustStatus = document.getElementById("rustStatusSelect").value;
+      const engineNitro = document.getElementById("engineNitroSelect").value;
+      const plateStatus = document.getElementById("plateSelect").value;
+
+      // Auto-adjust hints
+      const hintEl = document.getElementById("sourceHint");
+      let purchaseCost = 0;
+      if (source === "seller") {
+        purchaseCost = buy10 ? Math.round(rawAsk * 0.90) : rawAsk;
+        hintEl.textContent = "Inspect every damaged part first so the price above the NPC's head drops!";
+      } else if (source === "wreck") {
+        purchaseCost = 0;
+        hintEl.textContent = "Free claim (Press F), but requires Winch tow truck, Engine, and Rust removal.";
+      } else if (source === "stolen") {
+        purchaseCost = 150; // lockpick/hotwire overhead
+        hintEl.textContent = "Zero purchase price, but swap plate to 'Almost Legal' to avoid police & buyer penalty.";
+      } else {
+        purchaseCost = rawAsk;
+        hintEl.textContent = "Port container fixed price gamble (Update 26) — check category odds before buying.";
+      }
+
+      const washAndPaint = 250;
+      let extraFees = 0;
+      let marketMultiplier = 1.0;
+      const warnings = [];
+
+      // Rust math
+      if (rustStatus === "tinsmith") {
+        extraFees += Math.round(baseMarket * 0.12);
+      } else if (rustStatus === "sander") {
+        extraFees += 250;
+      } else if (rustStatus === "untreated") {
+        marketMultiplier *= 0.12; // 88% penalty (documented $400-$700 on $5000-$6000 car)
+        warnings.push("⚠️ UNTREATED RUST PENALTY: Buyers slash offers by ~88% ($400-$700 on a $5.5k car) if rust isn't stripped at Tinsmith or with Disc Sander!");
+      }
+
+      if (source === "wreck" && rustStatus === "none") {
+        warnings.push("💡 Note: Abandoned wrecks always spawn rusted & without an engine. Select Tinsmith or Disc Sander above for exact wreck math.");
+      }
+
+      // Engine & Nitro math
+      if (engineNitro === "wreck_engine") {
+        extraFees += 1800;
+      } else if (engineNitro === "scavenged_nos") {
+        marketMultiplier *= 1.08;
+      } else if (engineNitro === "max_nos") {
+        extraFees += 2200;
+        marketMultiplier *= 1.20;
+      }
+
+      // Plate math
+      if (plateStatus === "almost_legal") {
+        extraFees += 600;
+      } else if (plateStatus === "stolen_plate") {
+        marketMultiplier *= 0.55;
+        warnings.push("🚨 STOLEN PLATE PENALTY: Selling with a stolen plate slashes buyer bids and blocks Dealership Manager listing!");
+      }
+
+      const effectiveMarket = Math.round(baseMarket * marketMultiplier);
+      const finalSellOffer = sell10 ? Math.round(effectiveMarket * 1.10) : effectiveMarket;
+      const totalInvested = purchaseCost + partsCost + washAndPaint + extraFees;
+      const netProfit = finalSellOffer - totalInvested;
+      const roi = totalInvested > 0 ? Math.round((netProfit / totalInvested) * 100) : 999;
+
+      document.getElementById("targetBuyDisplay").textContent = `$${purchaseCost.toLocaleString()}`;
+      document.getElementById("targetSellDisplay").textContent = `$${finalSellOffer.toLocaleString()}`;
+      document.getElementById("ledgerBuy").textContent = `$${purchaseCost.toLocaleString()}`;
+      document.getElementById("ledgerParts").textContent = `$${(partsCost + washAndPaint).toLocaleString()}`;
+      document.getElementById("ledgerExtras").textContent = `$${extraFees.toLocaleString()}`;
+      document.getElementById("ledgerTotalCost").textContent = `$${totalInvested.toLocaleString()}`;
+
+      const profitEl = document.getElementById("netProfitDisplay");
+      profitEl.textContent = `${netProfit >= 0 ? "+" : "-"}$${Math.abs(netProfit).toLocaleString()}`;
+      profitEl.className = netProfit >= 0
+        ? "text-3xl md:text-4xl font-black text-emerald-400 font-mono"
+        : "text-3xl md:text-4xl font-black text-rose-400 font-mono";
+
+      const roiBadge = document.getElementById("roiBadge");
+      roiBadge.textContent = totalInvested === 0 ? "INFINITE ROI" : `${roi >= 0 ? "+" : ""}${roi}% ROI`;
+
+      const warnEl = document.getElementById("profitWarning");
+      if (warnings.length > 0) {
+        warnEl.textContent = warnings[0];
+        warnEl.classList.remove("hidden");
+      } else {
+        warnEl.classList.add("hidden");
+      }
+
+      // Progression milestones
+      const safeProfit = Math.max(500, netProfit);
+      const flipsForTruckNorris = Math.ceil(300000 / safeProfit);
+      const flipsForDealership = Math.ceil(50000 / safeProfit);
+      document.getElementById("flipsToNextTier").textContent = netProfit > 0 ? `~3 Flips / Tier Up` : `Fix Rust/Plate First`;
+      document.getElementById("milestoneText").innerHTML = netProfit > 0
+        ? `At <strong>+$${netProfit.toLocaleString()}/flip</strong>: takes <strong>${flipsForDealership} flips</strong> for the $50k Rich District Dealership quest (after Bartender discount) and <strong>${flipsForTruckNorris} flips</strong> for the $300,000 <strong>Truck Norris</strong>.`
+        : `Current configuration loses money! Strip rust at the Southwest Tinsmith and unlock the -10%/+10% Negotiation perks first.`;
+    }
+
+    function shareCurrentFlip() {
+      const params = new URLSearchParams({
+        car: document.getElementById("carSelect").value,
+        source: document.getElementById("sourceSelect").value,
+        ask: document.getElementById("askingPriceInput").value,
+        market: document.getElementById("marketValueInput").value,
+        parts: document.getElementById("partsCostInput").value
+      });
+      const url = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+      navigator.clipboard.writeText(url);
+      alert("Copied shareable flip calculation link to clipboard!");
+    }
+
+    // ==================== 45-WRECK INTERACTIVE SVG MAP ====================
+    function renderWreckMap() {
+      const filter = document.getElementById("zoneFilter").value;
+      const svg = document.getElementById("wreckRadarSvg");
+      const listEl = document.getElementById("wreckTableBody");
+
+      // Map bounds: X from -1050 to +1450 (span 2500), Z from -1000 to +1950 (span 2950)
+      const mapX = x => ((x + 1050) / 2500) * 740 + 30;
+      const mapZ = z => (1 - (z + 1000) / 2950) * 540 + 30;
+
+      const zoneColors = {
+        "Lost Angeles": "#f59e0b",
+        "Central": "#22d3ee",
+        "Desert": "#fde047",
+        "Perimeter": "#c084fc"
+      };
+
+      let svgHtml = `
+        <defs>
+          <pattern id="radarGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#162032" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="800" height="600" fill="url(#radarGrid)" />
+        <!-- Zone Highlights -->
+        <ellipse cx="${mapX(-480)}" cy="${mapZ(680)}" rx="115" ry="95" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-dasharray="4 4"/>
+        <text x="${mapX(-480)}" y="${mapZ(1030)}" fill="#fbbf24" font-size="11" font-weight="bold" text-anchor="middle">LOST ANGELES RUINS (20 WRECKS)</text>
+
+        <ellipse cx="${mapX(-100)}" cy="${mapZ(-780)}" rx="130" ry="45" fill="rgba(253,224,71,0.06)" stroke="rgba(253,224,71,0.25)" stroke-dasharray="4 4"/>
+        <text x="${mapX(-100)}" y="${mapZ(-930)}" fill="#fde047" font-size="10" font-weight="bold" text-anchor="middle">DESERT BASIN (6 WRECKS)</text>
+
+        <!-- Key Landmarks -->
+        <rect x="${mapX(-120)-6}" y="${mapZ(-100)-6}" width="12" height="12" rx="2" fill="#38bdf8" stroke="#090b10" stroke-width="2"/>
+        <text x="${mapX(-120)+10}" y="${mapZ(-100)+4}" fill="#38bdf8" font-size="10" font-weight="bold">🏠 Starter Shed Garage</text>
+
+        <rect x="${mapX(-520)-6}" y="${mapZ(-580)-6}" width="12" height="12" rx="2" fill="#f43f5e" stroke="#090b10" stroke-width="2"/>
+        <text x="${mapX(-520)+10}" y="${mapZ(-580)+4}" fill="#fb7185" font-size="10" font-weight="bold">🏭 Tinsmith (Body Shop)</text>
+      `;
+
+      const filtered = WRECK_COORDS.filter(w => filter === "all" || w.zone === filter);
+
+      filtered.forEach(w => {
+        const cx = mapX(w.x).toFixed(1);
+        const cy = mapZ(w.z).toFixed(1);
+        const isChecked = checkedWrecks.has(w.id);
+        const isSelected = w.id === selectedWreckId;
+        const fill = isChecked ? "#10b981" : (zoneColors[w.zone] || "#f59e0b");
+        const r = isSelected ? 9 : 6;
+
+        svgHtml += `
+          <g onclick="selectWreck(${w.id})" class="cursor-pointer">
+            ${isSelected ? `<circle cx="${cx}" cy="${cy}" r="14" fill="none" stroke="#ffffff" stroke-width="2" />` : ""}
+            <circle cx="${cx}" cy="${cy}" r="${r}" fill="${fill}" stroke="#090b10" stroke-width="1.8" />
+            <text x="${cx}" y="${Number(cy) - 9}" fill="#e2e8f0" font-size="9" font-family="monospace" text-anchor="middle">#${w.id}</text>
+          </g>
+        `;
+      });
+
+      svg.innerHTML = svgHtml;
+      document.getElementById("checkedCounter").textContent = `${checkedWrecks.size} / 45 Checked Today`;
+
+      listEl.innerHTML = filtered.map(w => {
+        const isChecked = checkedWrecks.has(w.id);
+        const activeClass = w.id === selectedWreckId ? "bg-amber-500/15 border-l-2 border-amber-400" : "hover:bg-garage-900/60";
+        return `
+          <div onclick="selectWreck(${w.id})" class="px-3.5 py-2.5 flex items-center justify-between cursor-pointer transition ${activeClass}">
+            <div>
+              <div class="font-bold text-white flex items-center gap-1.5">
+                <span class="text-amber-400 font-mono">#${w.id}</span>
+                <span>${w.area}</span>
+                ${isChecked ? `<span class="text-[10px] px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300">✓ Checked</span>` : ""}
+              </div>
+              <div class="text-[11px] text-slate-400">${w.zone} Cluster · Elev Y: ${w.y.toFixed(1)}m</div>
+            </div>
+            <div class="font-mono text-[11px] text-slate-300 text-right">
+              <div>X: ${w.x.toFixed(1)}</div>
+              <div>Z: ${w.z.toFixed(1)}</div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      updateSelectedWreckCard();
+    }
+
+    function selectWreck(id) {
+      selectedWreckId = id;
+      renderWreckMap();
+    }
+
+    function updateSelectedWreckCard() {
+      const w = WRECK_COORDS.find(item => item.id === selectedWreckId) || WRECK_COORDS[0];
+      const isChecked = checkedWrecks.has(w.id);
+      document.getElementById("selWreckTitle").textContent = `Container #${w.id} — ${w.area}`;
+      document.getElementById("selWreckCoords").textContent = `X: ${w.x} | Y (Elevation): ${w.y} | Z: ${w.z} · [${w.zone} Cluster]`;
+      const btn = document.getElementById("selWreckToggleBtn");
+      btn.textContent = isChecked ? "✓ Checked Today (Undo)" : "✓ Mark Checked";
+      btn.className = isChecked
+        ? "px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 text-xs font-bold transition"
+        : "px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 text-xs font-bold transition";
+    }
+
+    function toggleSelectedWreckChecked() {
+      if (checkedWrecks.has(selectedWreckId)) {
+        checkedWrecks.delete(selectedWreckId);
+      } else {
+        checkedWrecks.add(selectedWreckId);
+      }
+      localStorage.setItem("ucs_checked_wrecks", JSON.stringify([...checkedWrecks]));
+      renderWreckMap();
+    }
+
+    function resetCheckedWrecks() {
+      checkedWrecks.clear();
+      localStorage.setItem("ucs_checked_wrecks", "[]");
+      renderWreckMap();
+    }
+
+    // ==================== 26-CAR DIRECTORY RENDERER ====================
+    function renderCarDirectory() {
+      const q = (document.getElementById("carSearchInput").value || "").toLowerCase().trim();
+      const cls = document.getElementById("carClassFilter").value;
+      const grid = document.getElementById("carGridContainer");
+
+      const filtered = VEHICLES.filter(v => {
+        if (cls === "Cargo" && !v.cargo) return false;
+        if (cls === "Tow" && !v.tow) return false;
+        if (cls !== "all" && cls !== "Cargo" && cls !== "Tow" && v.tier !== cls) return false;
+        if (q && !(`${v.name} ${v.real} ${v.classLabel} ${v.notes}`).toLowerCase().includes(q)) return false;
+        return true;
+      });
+
+      grid.innerHTML = filtered.map(v => `
+        <div class="bg-garage-950 border border-slate-800 hover:border-amber-500/40 rounded-xl p-4 flex flex-col justify-between space-y-3 transition">
+          <div class="space-y-1.5">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <h3 class="font-extrabold text-white text-sm">${v.name}</h3>
+                <div class="text-xs text-amber-400 font-medium">Real Car: ${v.real}</div>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-garage-800 text-slate-300 border border-slate-700">${v.classLabel}</span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">${v.notes}</p>
+          </div>
+
+          <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs">
+            <div>
+              <span class="text-slate-400">100% Value:</span>
+              <span class="font-mono font-bold text-emerald-400 ml-1">$${v.market.toLocaleString()}</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              ${v.cargo ? `<span class="px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[10px] font-bold">📦 Cargo Quest</span>` : ""}
+              ${v.wreck ? `<span class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 text-[10px] font-bold">🏚️ Wreck Spawn</span>` : ""}
+              <button onclick="loadCarIntoCalc('${v.id}')" class="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-slate-950 font-bold text-[11px] transition">
+                Calculate Flip →
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function loadCarIntoCalc(carId) {
+      document.getElementById("carSelect").value = carId;
+      onCarPresetChange();
+      switchTab("calculator");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    window.addEventListener("DOMContentLoaded", initApp);
+  </script>
+</body>
+</html>
