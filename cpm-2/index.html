@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name='impact-site-verification' value='67248ade-2256-4eb9-a44d-4c9372adbc06' />
+  <meta name="google-site-verification" content="OGydVdcXVbSynuzT5IWmLOtdpgQUmtskzdu4q6aYauM" />
+  <meta name="google-site-verification" content="mxe1vY_zEngbC7G5D37IckCJL52dWfA5nvSQ2EbOoE0" />
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "yydvdldh0s");
+  </script>
+  <title>CPM 2 Gearbox Calculator — 7-Speed Ratios, Final Drive, Drag &amp; Drift Tunes (2026)</title>
+  <meta name="description" content="Free CPM 2 gearbox calculator. Set horsepower, drivetrain, and discipline to get a 7-speed ratio ladder plus final drive for drag, drift, circuit, and highway. Includes Jesko and Hoonicorn community presets and a shift-speed estimate." />
+  <meta name="keywords" content="cpm 2 gearbox calculator, cpm 2 gear ratio, cpm 2 final drive, cpm 2 drag tune, cpm 2 drift tune, car parking multiplayer 2 gearbox, koenigsegg jesko cpm 2, hoonicorn cpm 2" />
+  <link rel="canonical" href="https://smartcyf.github.io/commercial-promotion/cpm-2/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CPM 2 Gearbox Ratio Calculator — Drag, Drift, Circuit &amp; Highway" />
+  <meta property="og:description" content="The first interactive 7-speed final-drive calculator for Car Parking Multiplayer 2. Tune one gear at a time and share the setup." />
+  <meta property="og:url" content="https://smartcyf.github.io/commercial-promotion/cpm-2/" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { pit: { 950:'#0b0d12', 900:'#141821', 800:'#1d2433', red:'#ef4444' } } } } };
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"WebApplication","name":"CPM 2 Gearbox Calculator","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Interactive 7-speed gearbox and final drive calculator for CPM 2 drag, drift, circuit, and highway tunes."},
+    {"@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"What does final drive do in CPM 2?","acceptedAnswer":{"@type":"Answer","text":"Final drive multiplies every gear. A higher final drive adds launch torque and lowers top speed. A lower final drive raises top speed and slows the launch. Set final drive first, then trim the gear where the car falls out of the power band."}},
+      {"@type":"Question","name":"What gearbox settings suit drag racing in CPM 2?","acceptedAnswer":{"@type":"Answer","text":"Use a higher final drive with short 1st and 2nd gears for the launch, then open the upper gears just enough to stay in the power band. Change one ratio at a time and test on the drag strip."}}
+    ]}
+  ]}
+  </script>
+</head>
+<body class="bg-pit-950 text-slate-100 min-h-screen">
+  <div class="bg-pit-900 border-b border-red-500/30 px-4 py-2 text-xs">
+    <div class="max-w-6xl mx-auto flex flex-wrap justify-between gap-2">
+      <span>CPM 2 Early Access · Drag, Drift, Circuit, Rally · cross-play car meets</span>
+      <div class="flex gap-2">
+        <a class="px-3 py-1 rounded-full bg-red-500 text-white font-bold" target="_blank" rel="noopener sponsored" href="https://www.instant-gaming.com/en/11057-buy-forza-horizon-6-pc-steam/?igr=gamer-d5194af">Forza Horizon 6 Key ↗</a>
+        <a class="px-3 py-1 rounded-full border border-red-400/40 text-red-300" target="_blank" rel="noopener sponsored" href="https://www.instant-gaming.com/en/trending/?igr=gamer-d5194af">Racing Deals ↗</a>
+        <a class="px-3 py-1 rounded-full border border-pink-400/40 text-pink-300" target="_blank" rel="noopener" href="https://ko-fi.com/sstoolkit">Ko-fi</a>
+      </div>
+    </div>
+  </div>
+  <main class="max-w-6xl mx-auto px-4 py-6 space-y-5">
+    <header>
+      <h1 class="text-2xl md:text-3xl font-black">CPM 2 <span class="text-red-400">Gearbox Calculator</span></h1>
+      <p class="text-sm text-slate-400">7 gears + final drive. Higher final drive = more launch, less top speed. Change one number, then test.</p>
+    </header>
+    <section class="grid lg:grid-cols-5 gap-5">
+      <div class="lg:col-span-2 bg-pit-900 border border-slate-800 rounded-2xl p-5 space-y-3 text-sm">
+        <label class="block text-xs">Car preset
+          <select id="preset" class="mt-1 w-full bg-pit-950 border border-slate-700 rounded-lg px-3 py-2" onchange="applyPreset()"></select>
+        </label>
+        <label class="block text-xs">Discipline
+          <select id="disc" class="mt-1 w-full bg-pit-950 border border-slate-700 rounded-lg px-3 py-2" onchange="recalc()">
+            <option value="drag">Drag — short 1st/2nd</option>
+            <option value="drift">Drift — stay in boost</option>
+            <option value="circuit">Circuit — longer gears</option>
+            <option value="highway">Highway — top speed</option>
+          </select>
+        </label>
+        <label class="block text-xs">Horsepower <input id="hp" type="number" value="700" class="mt-1 w-full bg-pit-950 border border-slate-700 rounded-lg px-3 py-2" oninput="recalc()" /></label>
+        <label class="block text-xs">Weight (kg) <input id="kg" type="number" value="1400" class="mt-1 w-full bg-pit-950 border border-slate-700 rounded-lg px-3 py-2" oninput="recalc()" /></label>
+        <label class="block text-xs">Drivetrain
+          <select id="drive" class="mt-1 w-full bg-pit-950 border border-slate-700 rounded-lg px-3 py-2" onchange="recalc()">
+            <option>RWD</option><option>AWD</option><option>FWD</option>
+          </select>
+        </label>
+        <label class="block text-xs">Redline (RPM) <input id="rpm" type="number" value="8500" class="mt-1 w-full bg-pit-950 border border-slate-700 rounded-lg px-3 py-2" oninput="recalc()" /></label>
+        <p class="text-[11px] text-slate-500">Tire pressure reported by players: 55–65 PSI. Street: semislicks. Circuit: track tires. AWD: front suspension stiffer than rear. Air/fuel: move only 1–2 points, idle near 900 RPM, boost about 1.0–1.3 bar.</p>
+      </div>
+      <div class="lg:col-span-3 bg-pit-900 border border-red-500/30 rounded-2xl p-5">
+        <div class="flex justify-between items-end">
+          <div>
+            <div class="text-xs text-slate-400">Final drive</div>
+            <div id="final" class="text-4xl font-black font-mono text-red-400">3.40</div>
+          </div>
+          <button onclick="copyTune()" class="text-xs px-3 py-1.5 rounded-lg bg-red-500 font-bold">Copy tune</button>
+        </div>
+        <div id="gears" class="mt-4 space-y-2"></div>
+        <p id="note" class="text-sm text-slate-300 mt-4"></p>
+        <p id="speed" class="text-xs text-slate-400 mt-1"></p>
+      </div>
+    </section>
+    <section class="grid md:grid-cols-3 gap-3 text-xs text-slate-300">
+      <div class="bg-pit-900 border border-slate-800 rounded-xl p-4"><b class="text-white">Drag.</b> Short 1st and 2nd win the 60 ft. If 2nd bogs, shorten it before touching 5th–7th.</div>
+      <div class="bg-pit-900 border border-slate-800 rounded-xl p-4"><b class="text-white">Drift.</b> Low-to-mid final drive and close ratios keep the engine on boost while the car is sideways.</div>
+      <div class="bg-pit-900 border border-slate-800 rounded-xl p-4"><b class="text-white">Circuit / highway.</b> Longer upper gears cut shifts. If the car cannot pull top gear, raise final drive by 0.10.</div>
+    </section>
+    <footer class="text-xs text-slate-500 border-t border-slate-800 pt-4">
+      Community baseline presets: Koenigsegg Jesko highway (Final 3.00, 4.00 / 2.80 / 2.00 / 1.50 / 1.20 / 1.00 / 0.80) and Ford Hoonicorn drift (Final 3.40, 3.60 / 2.50 / 1.80 / 1.30 / 1.00 / 0.85). Every car still needs a strip test after an engine swap.
+      <div class="mt-2 flex gap-3 flex-wrap">
+        <a class="text-emerald-300" href="https://smartcyf.github.io/commercial-promotion/scam-with-your-friends/">Scam With Your Friends Quota Calculator</a>
+        <a class="text-amber-300" href="https://smartcyf.github.io/commercial-promotion/used-cars-simulator/">Used Cars Simulator</a>
+        <a class="text-slate-300" href="https://smartcyf.github.io/commercial-promotion/">All tools</a>
+      </div>
+    </footer>
+  </main>
+  <script>
+    const PRESETS = [
+      { id:"custom", name:"Custom car", hp:700, kg:1400, drive:"RWD", disc:"drag" },
+      { id:"jesko", name:"Koenigsegg Jesko — highway", hp:1280, kg:1320, drive:"AWD", disc:"highway", lock:[3.00,4.00,2.80,2.00,1.50,1.20,1.00,0.80] },
+      { id:"hooni", name:"Ford Hoonicorn — drift", hp:845, kg:1450, drive:"RWD", disc:"drift", lock:[3.40,3.60,2.50,1.80,1.30,1.00,0.85,0.72] },
+      { id:"launch", name:"Lightweight drag build", hp:900, kg:1100, drive:"RWD", disc:"drag" },
+      { id:"awd", name:"AWD circuit build", hp:650, kg:1550, drive:"AWD", disc:"circuit" }
+    ];
+    const BASE = {
+      drag:    [3.70, 3.90, 2.60, 1.90, 1.48, 1.18, 0.96, 0.80],
+      drift:   [3.40, 3.60, 2.50, 1.80, 1.30, 1.00, 0.85, 0.72],
+      circuit: [3.15, 3.40, 2.35, 1.75, 1.38, 1.12, 0.92, 0.78],
+      highway: [3.00, 4.00, 2.80, 2.00, 1.50, 1.20, 1.00, 0.80]
+    };
+    function $(id){ return document.getElementById(id); }
+    function fillPresets(){
+      $("preset").innerHTML = PRESETS.map(p => `<option value="${p.id}">${p.name}</option>`).join("");
+    }
+    function applyPreset(){
+      const p = PRESETS.find(x => x.id === $("preset").value);
+      $("hp").value = p.hp; $("kg").value = p.kg; $("drive").value = p.drive; $("disc").value = p.disc;
+      recalc();
+    }
+    function recalc(){
+      const disc = $("disc").value;
+      const hp = +$("hp").value || 500;
+      const kg = +$("kg").value || 1400;
+      const drive = $("drive").value;
+      const rpm = +$("rpm").value || 8000;
+      const preset = PRESETS.find(x => x.id === $("preset").value);
+      let ratios = (preset && preset.lock && preset.disc === disc) ? preset.lock.slice() : BASE[disc].slice();
+      const power = hp / kg;
+      if (!(preset && preset.lock && preset.disc === disc)) {
+        const bias = power > 0.55 ? -0.12 : power < 0.35 ? 0.15 : 0;
+        const driveBias = drive === "AWD" ? -0.08 : drive === "FWD" ? 0.10 : 0;
+        ratios[0] = +(ratios[0] + bias + driveBias).toFixed(2);
+      }
+      $("final").textContent = ratios[0].toFixed(2);
+      const labels = ["1st","2nd","3rd","4th","5th","6th","7th"];
+      $("gears").innerHTML = labels.map((label, i) => {
+        const overall = ratios[0] * ratios[i+1];
+        const width = Math.min(100, overall * 8);
+        return `<div class="grid grid-cols-12 gap-2 items-center text-xs">
+          <div class="col-span-2 font-bold">${label}</div>
+          <div class="col-span-2 font-mono text-red-300">${ratios[i+1].toFixed(2)}</div>
+          <div class="col-span-6 h-2 bg-pit-950 rounded"><div class="h-2 bg-red-500 rounded" style="width:${width}%"></div></div>
+          <div class="col-span-2 text-right font-mono text-slate-400">${overall.toFixed(2)}</div>
+        </div>`;
+      }).join("");
+      const notes = {
+        drag: "Launch gear is short on purpose. If the tires spin, lengthen 1st by 0.10 before dropping final drive.",
+        drift: "Close ratios keep RPM up between transitions. Hoonicorn community baseline is the drift preset.",
+        circuit: "Longer 4th–7th cuts shifts on straights. Revisit final drive after any engine swap.",
+        highway: "Jesko community baseline is the top-speed ladder. If 7th cannot pull, add 0.10 final drive."
+      };
+      $("note").textContent = notes[disc];
+      const wheelRpm = rpm / (ratios[0] * ratios[7]);
+      const kmh = wheelRpm * 0.035 * 60 * 3.6 / 10;
+      $("speed").textContent = "Rough 7th-gear speed at redline, 35 cm rolling radius: about " + Math.round(kmh) + " km/h. Treat it as a comparison between two tunes, then confirm on the highway dyno.";
+      window.__tune = { discipline: disc, hp, kg, drive, rpm, final: ratios[0], gears: ratios.slice(1) };
+    }
+    function copyTune(){
+      navigator.clipboard.writeText(JSON.stringify(window.__tune, null, 2));
+    }
+    fillPresets(); recalc();
+  </script>
+</body>
+</html>
